@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#122e2a"><title>경기지역본부 · 채용 현황</title>
+<style>
+:root { --ink:#17342e; --muted:#73817c; --bg:#f4f6f3; --line:#e4e9e3; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif; line-height:1.5; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+button:focus-visible,input:focus-visible { outline:3px solid #d4a84b; outline-offset:3px; }
+.app { max-width:680px; margin:auto; padding-bottom:calc(100px + env(safe-area-inset-bottom)); }
+header { background:#122e2a; color:white; padding:32px 22px 27px; border-radius:0 0 30px 30px; }
+header small { color:#b6d0bd; letter-spacing:2px; font-size:11px; }
+h1 { font-size:27px; letter-spacing:-1px; margin:9px 0 6px; }
+header p { margin:0; color:#c1d1c8; font-size:13px; }
+.tag { display:inline-block; margin-top:20px; border:1px solid #4c675d; border-radius:20px; padding:5px 11px; font-size:11px; }
+main { padding:22px 18px; }
+h2 { font-size:20px; letter-spacing:-.6px; margin:0; overflow-wrap:anywhere; }
+h3 { margin:0; font-size:16px; }
+.eyebrow { font-size:10px; color:#76877c; letter-spacing:1.8px; font-weight:700; }
+.section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:15px; gap:12px; }
+.sub { color:var(--muted); font-size:12px; margin:3px 0; }
+.section-head > .sub { flex-shrink:0; }
+.count { font-size:11px; background:#e5ecdf; border-radius:20px; padding:4px 9px; white-space:nowrap; }
+.card { background:white; border:1px solid var(--line); border-radius:21px; padding:20px; margin-bottom:15px; }
+.total { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.total strong { font-size:44px; letter-spacing:-2px; line-height:1.2; }
+.total strong small { font-size:15px; letter-spacing:0; margin-left:6px; font-weight:500; }
+.pill { display:inline-block; background:#edf2e8; color:#526449; border-radius:12px; padding:8px 12px; font-size:12px; }
+.summary-tags { display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
+.stack { display:flex; height:11px; border-radius:20px; overflow:hidden; margin:20px 0; }
+.stack span { min-width:0; }
+.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:18px 10px; }
+.stat-label { font-size:12px; color:#68766d; display:flex; gap:5px; align-items:center; }
+.dot { width:7px; height:7px; border-radius:50%; display:inline-block; flex-shrink:0; }
+.stat-value { font-size:18px; font-weight:750; margin-top:4px; }
+.stat-value small { font-size:11px; color:#6b7970; font-weight:500; margin-left:5px; }
+.notice { font-size:12px; background:#fff5df; color:#785c27; border-radius:12px; padding:12px; margin-top:16px; }
+.notice p { margin:0; }
+.search-area { margin-bottom:20px; }
+.search { width:100%; border:1px solid var(--line); background:white; border-radius:13px; padding:13px 14px; color:var(--ink); }
+.search-help { font-size:11px; color:var(--muted); margin:7px 2px 0; }
+.group-list { display:grid; gap:9px; }
+.group { display:grid; grid-template-columns:minmax(0,1fr) auto 10px; align-items:center; gap:10px; width:100%; min-height:76px; border:1px solid var(--line); background:white; text-align:left; border-radius:16px; padding:14px; color:var(--ink); }
+.group-title { min-width:0; display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+.group-name { font-size:15px; font-weight:750; overflow-wrap:anywhere; }
+.group-metrics { display:flex; flex-direction:column; gap:4px; }
+.group-metric { display:block; color:#65766b; font-size:11px; white-space:nowrap; }
+.group-metric strong { margin-left:4px; font-size:12px; }
+.group-metric.han strong { color:#32694d; }
+.group-metric.min strong { color:#4e7c96; }
+.group-arrow { font-size:20px; color:#81947e; }
+.group:hover { border-color:#71977b; }
+.group.selected { background:#e7efdf; border-color:#69835d; }
+.company-status { display:inline-block; border-radius:6px; font-size:10px; font-weight:700; padding:3px 7px; white-space:nowrap; }
+.company-status.friendly { background:#e1f0e4; color:#326744; }
+.company-status.uncooperative { background:#fbece5; color:#9b5339; }
+.rental-guide { font-size:11px; color:#68766d; background:#eaf0e4; border-radius:10px; padding:11px 12px; margin:0 0 14px; }
+.rental-summary { border-top:1px solid var(--line); margin-top:18px; padding-top:16px; }
+.rental-value { font-size:32px; font-weight:750; color:#32694d; margin-top:3px; }
+.rental-value small { font-size:14px; font-weight:500; margin:0 10px 0 4px; }
+.rental-value span { font-size:22px; }
+.choose-hint { text-align:center; color:var(--muted); font-size:12px; padding:22px 12px; margin:0; }
+.selection { margin:24px 0 14px; scroll-margin-top:18px; }
+.site-name { font-size:17px; line-height:1.45; letter-spacing:-.5px; overflow-wrap:anywhere; margin:10px 0 12px; }
+.site-top { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:11px; color:#61766a; }
+.badge { background:#f0f3ed; border-radius:7px; padding:4px 7px; }
+.meta { font-size:12px; color:#6b7a70; display:grid; grid-template-columns:45px 1fr; gap:5px; margin-bottom:15px; }
+.meta span:nth-child(even) { color:#344d40; overflow-wrap:anywhere; }
+.site-counts { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; border-top:1px solid var(--line); padding-top:14px; font-size:11px; color:#66766a; }
+.site-counts b { display:block; font-size:14px; color:var(--ink); margin-top:3px; }
+.site-counts small { font-size:10px; font-weight:400; color:#718075; }
+.note { font-size:11px; color:#8b6625; margin:12px 0 0; }
+.empty { text-align:center; padding:32px; color:#73817c; font-size:13px; }
+.footnote { font-size:11px; color:#7f8a80; margin:18px 3px; line-height:1.8; }
+nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:680px; display:grid; grid-template-columns:repeat(4,1fr); background:#ffffffed; backdrop-filter:blur(16px); border-top:1px solid var(--line); padding:10px 12px calc(10px + env(safe-area-inset-bottom)); z-index:10; }
+nav button { border:0; background:none; color:#7d887e; border-radius:12px; padding:8px 2px; font-size:11px; }
+nav button.active { background:#eaf0e3; color:#244e39; font-weight:750; }
+nav svg { display:block; margin:0 auto 4px; width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.6; }
+@media(min-width:600px) { main { padding:28px; } header { padding:38px 30px; } .group-metrics { flex-direction:row; gap:22px; } .group { min-height:72px; padding:16px 18px; } }
+@media(prefers-reduced-motion:no-preference) { .card { animation:appear .2s ease-out; } @keyframes appear { from { opacity:.3; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } } }
+.data-tools { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 18px 0; font-size:10px; color:var(--muted); }
+.data-tools button,.retry-button { border:1px solid #d7e2d2; color:var(--ink); background:#fff; border-radius:10px; padding:10px; min-height:40px; font-size:11px; cursor:pointer; flex-shrink:0; }
+.data-tools button:disabled { opacity:.5; cursor:wait; }
+.load-error p { font-size:13px; color:var(--muted); }
+@media(min-width:600px) { .data-tools { padding-right:28px; padding-left:28px; } }
+</style>
+</head>
+<body><div class="app"><header><small>GYEONGGI REGIONAL HEADQUARTERS</small><h1>현장의 숫자를, 한눈에.</h1><p>경기지역본부 채용비율 현황</p><div class="tag" id="data-period">첫 번째 시트</div></header><div class="data-tools"><span id="sync-status" role="status">데이터 연결 중…</span><button id="refresh-data" type="button">데이터 새로고침</button></div><main id="main"><div class="empty" role="status">현황 데이터를 불러오는 중…</div></main><nav aria-label="현황 분류"></nav></div>
+<script>
+'use strict';
+let DATA = null;
+const COLORS = ['#32694d', '#6095b3', '#a491c1', '#c29a45', '#a0b488', '#bfc6c3'];
+const MODES = [
+  ['all', '전체', '전체 채용 현황', '<path d="M4 20V10h4v10m2 0V4h4v16m2 0v-7h4v7M2 21h20"/>'],
+  ['month', '월별', '월별신규채용추이', '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v5m10-5v5M3 11h18"/>'],
+  ['branch', '지부별', '지부별 채용 현황', '<path d="M4 21V5l8-3 8 3v16M2 21h20M8 8h2m4 0h2M8 12h2m4 0h2M10 21v-5h4v5"/>'],
+  ['rental', '임대사별', '임대사별 채용현황', '<path d="M3 21V9h8v12M11 21V3h10v18M1 21h22M6 12h2m-2 4h2m6-9h4m-4 4h4m-4 4h4"/>']
+];
+let mode = 'all';
+let selected = null;
+let query = '';
+const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const pct = (n, total) => total ? (n / total * 100).toFixed(1) : '0.0';
+function aggregate(rows) {
+  return {
+    total: rows.reduce((sum, r) => sum + r.total, 0),
+    counts: DATA.categories.map(c => rows.reduce((sum, r) => sum + r.counts[c], 0))
+  };
+}
+const countOf = (a, category) => a.counts[DATA.categories.indexOf(category)];
+function companyStatus(a) {
+  if (a.total <= 0) return null;
+  const han = countOf(a, '한노');
+  if (han * 100 >= a.total * 40) return {label: '우호업체', kind: 'friendly'};
+  if (han * 100 <= a.total * 30) return {label: '비협조업체', kind: 'uncooperative'};
+  return null;
+}
+function statusBadge(a) {
+  const status = companyStatus(a);
+  return status ? `<span class="company-status ${status.kind}">${status.label}</span>` : '';
+}
+function sourceNotice(a) {
+  const sum = a.counts.reduce((s, n) => s + n, 0);
+  return sum !== a.total ? `<div class="notice"><p>원본 확인 · 총대수 ${a.total}대 / 소속 합계 ${sum}대</p><p>소속 비율 합계 ${pct(sum, a.total)}%. 3월 시화MTV 현장은 ‘1대에 2명이 타고있음’으로 기록되어 있습니다. 원본 수치를 유지했습니다.</p></div>` : '';
+}
+function summary(rows) {
+  const a = aggregate(rows);
+  const han = countOf(a, '한노');
+  const stats = mode === 'rental'
+    ? `<div class="rental-summary"><div class="stat-label"><i class="dot" style="background:${COLORS[0]}"></i>한노</div><div class="rental-value">${han}<small>대</small><span>(${pct(han, a.total)}%)</span></div></div>`
+    : `<div class="stack" aria-hidden="true">${a.counts.map((n, i) => `<span style="background:${COLORS[i]};flex:${n}"></span>`).join('')}</div><div class="stats">${DATA.categories.map((c, i) => `<div><div class="stat-label"><i class="dot" style="background:${COLORS[i]}"></i>${c}</div><div class="stat-value">${a.counts[i]}<small>대 · ${pct(a.counts[i], a.total)}%</small></div></div>`).join('')}</div>`;
+  return `<div class="card"><div class="total"><div><div class="eyebrow">TOTAL EQUIPMENT</div><strong>${a.total}<small>대</small></strong><p class="sub">총대수 기준 100%</p></div><div class="summary-tags"><span class="pill">현장 기록 ${rows.length}건</span>${mode === 'rental' ? statusBadge(a) : ''}</div></div>${stats}${sourceNotice(a)}</div>`;
+}
+function site(r) {
+  return `<article class="card"><div class="site-top"><span class="badge">${r.month}월 · ${esc(r.branch)}</span><span>총 <b>${r.total}대</b></span></div><h3 class="site-name">${esc(r.site)}</h3><div class="meta"><span>원청사</span><span>${esc(r.contractor)}</span><span>임대사</span><span>${esc(r.rental)}</span></div><div class="site-counts">${DATA.categories.map((c, i) => `<div><i class="dot" style="background:${COLORS[i]}"></i> ${c}<b>${r.counts[c]}대 <small>${pct(r.counts[c], r.total)}%</small></b></div>`).join('')}</div>${r.note ? `<p class="note">※ ${esc(r.note)}</p>` : ''}</article>`;
+}
+function groupKeys() {
+  return mode === 'month' ? DATA.months : [...new Set(DATA.records.map(r => r[mode]))].sort((a, b) => a.localeCompare(b, 'ko'));
+}
+const matching = key => DATA.records.filter(r => r[mode] === key);
+function matchingQuery(rows) {
+  const q = query.trim().toLocaleLowerCase();
+  return rows.filter(r => [r.site, r.contractor, r.rental, r.branch].some(v => v.toLocaleLowerCase().includes(q)));
+}
+function groupMetrics(a) {
+  const han = countOf(a, '한노');
+  const min = countOf(a, '민노');
+  const hanText = mode === 'branch' ? `${pct(han, a.total)}%` : `${han}대 (${pct(han, a.total)}%)`;
+  return `<span class="group-metric han">한노 <strong>${hanText}</strong></span>${mode !== 'rental' ? `<span class="group-metric min">민노 <strong>${pct(min, a.total)}%</strong></span>` : ''}`;
+}
+function drawGroups() {
+  const host = document.getElementById('groups');
+  if (!host) return;
+  host.innerHTML = groupKeys().map((key, i) => {
+    const rows = matching(key);
+    if (!matchingQuery(rows).length) return '';
+    const a = aggregate(rows);
+    return `<button class="group ${selected === key ? 'selected' : ''}" data-group="${i}" aria-pressed="${selected === key}"><span class="group-title"><span class="group-name">${esc(mode === 'month' ? key + '월' : key)}</span>${mode === 'rental' ? statusBadge(a) : ''}</span><span class="group-metrics">${groupMetrics(a)}</span><span class="group-arrow" aria-hidden="true">${selected === key ? '⌄' : '›'}</span></button>`;
+  }).join('') || '<div class="empty">검색 결과가 없습니다.</div>';
+}
+function drawDetails() {
+  const host = document.getElementById('details');
+  if (mode !== 'all' && selected === null) {
+    host.innerHTML = '<p class="choose-hint">위 항목을 누르면 합계와 현장 정보를 볼 수 있어요.</p>';
+    return;
+  }
+  const rows = mode === 'all' ? DATA.records : matching(selected);
+  const label = mode === 'all' ? '전체 누적' : mode === 'month' ? selected + '월' : selected;
+  const filtered = matchingQuery(rows);
+  host.innerHTML = `<div class="section-head selection"><h2>${esc(label)}</h2><span class="sub">${mode === 'rental' ? '한노 대수 · 비율' : '소속별 대수 · 비율'}</span></div>${summary(rows)}<div class="section-head"><h3>현장 정보</h3><span class="count">${query.trim() ? filtered.length + ' / ' : ''}${rows.length}건</span></div><div id="sites">${filtered.length ? filtered.map(site).join('') : '<div class="empty">선택한 범위에 검색 결과가 없습니다.</div>'}</div>`;
+}
+function drawSearchStatus() {
+  document.getElementById('search-status').textContent = query.trim() ? `전체 검색 결과 ${matchingQuery(DATA.records).length}건 · 합계와 비율은 검색 전 기준입니다.` : '현장명·원청사·임대사로 검색할 수 있어요.';
+}
+function draw() {
+  document.querySelector('nav').innerHTML = MODES.map(([key, label, title, icon]) => `<button data-mode="${key}" class="${mode === key ? 'active' : ''}" aria-pressed="${mode === key}"><svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg>${label}</button>`).join('');
+  const title = MODES.find(m => m[0] === mode)[2];
+  document.getElementById('main').innerHTML = `<div class="section-head"><div><div class="eyebrow">HIRING OVERVIEW</div><h2>${title}</h2><p class="sub">${mode === 'all' ? `${Math.min(...DATA.months)}~${Math.max(...DATA.months)}월 전체 현장 기록을 합산했어요.` : '목록에서 비율을 비교하고 현장을 확인하세요.'}</p></div><span class="count">${DATA.year}</span></div><div class="search-area"><input class="search" id="search" type="search" aria-label="현장명, 원청사, 임대사 검색" aria-describedby="search-status" placeholder="현장명, 원청사, 임대사 검색" value="${esc(query)}"><p id="search-status" class="search-help" role="status"></p></div>${mode === 'rental' ? '<p class="rental-guide">한노 비율 <b>40% 이상 우호업체</b> · <b>30% 이하 비협조업체</b></p>' : ''}${mode !== 'all' ? '<div class="group-list" id="groups"></div>' : ''}<div id="details"></div><p class="footnote">비율 = 소속 대수 ÷ 선택 범위의 총대수 × 100 (소수점 첫째 자리 반올림).<br>직원은 원본의 ‘직원(비노조)’입니다. 같은 현장도 월·임대사별 기록을 각각 합산합니다.<br>검색은 선택 목록과 현장 목록에 적용됩니다. 합계·비율·업체 표시는 검색 전 해당 범위 전체 기준입니다.<br>${mode === 'rental' ? '업체 표시는 반올림 전 한노 비율 기준입니다. 30% 초과 40% 미만은 별도 표기하지 않습니다.' : '색상 막대는 소속 구성의 상대적 비중을 나타냅니다. 정확한 총대수 대비 비율은 숫자로 확인하세요.'}</p>`;
+  drawGroups();
+  drawDetails();
+  drawSearchStatus();
+  document.getElementById('search').addEventListener('input', e => {
+    query = e.target.value;
+    drawGroups();
+    drawDetails();
+    drawSearchStatus();
+  });
+}
+document.addEventListener('click', e => {
+  const tab = e.target.closest('[data-mode]');
+  if (tab) {
+    mode = tab.dataset.mode;
+    selected = null;
+    query = '';
+    draw();
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  const group = e.target.closest('[data-group]');
+  if (group) {
+    selected = groupKeys()[Number(group.dataset.group)];
+    drawGroups();
+    drawDetails();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelector('.selection').scrollIntoView({behavior: reducedMotion ? 'instant' : 'smooth', block: 'start'});
+  }
+});
+function validateData(data) {
+  const categories = ['한노', '민노', '섬유', '연합', '직원', '미정'];
+  if (!data || !Number.isInteger(data.year) || !Array.isArray(data.months) || !data.months.length ||
+      !data.months.every(m => Number.isInteger(m) && m >= 1 && m <= 12) ||
+      new Set(data.months).size !== data.months.length ||
+      !Array.isArray(data.categories) || data.categories.length !== categories.length ||
+      !categories.every((c, i) => data.categories[i] === c) || !Array.isArray(data.records)) {
+    throw new Error('JSON 형식을 확인해 주세요.');
+  }
+  const ids = new Set();
+  for (const r of data.records) {
+    if (!r || r.id == null || ids.has(r.id) || !data.months.includes(r.month) ||
+        !Number.isInteger(r.total) || r.total < 0 ||
+        !['site', 'contractor', 'rental', 'branch', 'note'].every(k => typeof r[k] === 'string') ||
+        !r.counts || !categories.every(c => Number.isInteger(r.counts[c]) && r.counts[c] >= 0)) {
+      throw new Error('JSON 현장 기록을 확인해 주세요.');
+    }
+    ids.add(r.id);
+  }
+  return data;
+}
+let loading = false;
+let dataSignature = '';
+async function loadData() {
+  if (loading) return;
+  loading = true;
+  const button = document.getElementById('refresh-data');
+  const status = document.getElementById('sync-status');
+  button.disabled = true;
+  status.textContent = '데이터를 확인하고 있어요…';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 15000);
+  try {
+    const response = await fetch(new URL('./data/sheet1.json', document.baseURI), {cache: 'no-store', signal: controller.signal});
+    if (!response.ok) throw new Error('데이터 응답 오류');
+    const next = validateData(await response.json());
+    const signature = JSON.stringify(next);
+    if (signature !== dataSignature) {
+      const activeInput = document.activeElement?.id === 'search' ? document.activeElement : null;
+      const selection = activeInput ? [activeInput.selectionStart, activeInput.selectionEnd] : null;
+      const scrollTop = window.scrollY;
+      DATA = next;
+      dataSignature = signature;
+      if (mode !== 'all' && !groupKeys().includes(selected)) selected = null;
+      const months = [...DATA.months].sort((a, b) => a - b);
+      document.getElementById('data-period').textContent = `${DATA.year}년 ${months[0]}월 — ${months[months.length - 1]}월 · 첫 번째 시트`;
+      draw();
+      if (selection) {
+        const input = document.getElementById('search');
+        input.focus({preventScroll: true});
+        input.setSelectionRange(...selection);
+      }
+      window.scrollTo({top: scrollTop, behavior: 'instant'});
+    }
+    const time = new Date().toLocaleTimeString('ko-KR', {hour: '2-digit', minute: '2-digit', hour12: false});
+    status.textContent = `${time} 확인 · 1분마다 자동 갱신`;
+  } catch (error) {
+    status.textContent = DATA ? '갱신 실패 · 이전 데이터를 표시합니다.' : '데이터를 불러오지 못했어요.';
+    if (!DATA) {
+      document.getElementById('main').innerHTML = `<div class="card load-error"><h2>데이터 연결을 확인해 주세요</h2><p>${location.protocol === 'file:' ? 'HTML 파일을 직접 열면 외부 JSON을 읽을 수 없습니다. HTML과 data 폴더를 함께 웹서버에 올린 뒤 웹주소로 접속해 주세요.' : 'data/sheet1.json 파일의 위치와 JSON 형식을 확인한 뒤 다시 시도해 주세요.'}</p><button class="retry-button" data-retry>다시 시도</button></div>`;
+    }
+  } finally {
+    clearTimeout(timer);
+    loading = false;
+    button.disabled = false;
+  }
+}
+document.getElementById('refresh-data').addEventListener('click', () => loadData());
+document.addEventListener('click', e => { if (e.target.closest('[data-retry]')) loadData(); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) loadData(); });
+window.addEventListener('focus', () => loadData());
+setInterval(() => { if (!document.hidden) loadData(); }, 60000);
+loadData();
+</script></body></html>
