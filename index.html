@@ -75,39 +75,109 @@ h3 { margin:0; font-size:16px; }
 .note { font-size:11px; color:#8b6625; margin:12px 0 0; }
 .empty { text-align:center; padding:32px; color:#73817c; font-size:13px; }
 .footnote { font-size:11px; color:#7f8a80; margin:18px 3px; line-height:1.8; }
-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:680px; display:grid; grid-template-columns:repeat(4,1fr); background:#ffffffed; backdrop-filter:blur(16px); border-top:1px solid var(--line); padding:10px 12px calc(10px + env(safe-area-inset-bottom)); z-index:10; }
+nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:680px; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); background:#ffffffed; backdrop-filter:blur(16px); border-top:1px solid var(--line); padding:10px 8px calc(10px + env(safe-area-inset-bottom)); z-index:10; }
 nav button { border:0; background:none; color:#7d887e; border-radius:12px; padding:8px 2px; font-size:11px; }
 nav button.active { background:#eaf0e3; color:#244e39; font-weight:750; }
 nav svg { display:block; margin:0 auto 4px; width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.6; }
 @media(min-width:600px) { main { padding:28px; } header { padding:38px 30px; } .group-metrics { flex-direction:row; gap:22px; } .group { min-height:72px; padding:16px 18px; } }
 @media(prefers-reduced-motion:no-preference) { .card { animation:appear .2s ease-out; } @keyframes appear { from { opacity:.3; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } } }
+.separate-guide { background:#e9eff5; border:1px solid #dbe5ef; border-radius:14px; padding:13px 14px; margin-bottom:16px; color:#405d75; font-size:12px; }
+.separate-guide strong { display:block; margin-bottom:4px; }
+.semiconductor-tabs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-bottom:18px; }
+.semiconductor-tabs button { border:1px solid var(--line); border-radius:12px; background:white; color:#6a7d72; padding:12px 6px; min-height:46px; font-size:12px; }
+.semiconductor-tabs button[aria-pressed="true"] { background:#173d33; border-color:#173d33; color:white; font-weight:700; }
+.semiconductor-tabs span { font-size:10px; margin-left:4px; }
+.assigned-guide { font-size:12px; padding:14px; background:#fff5df; color:#785c27; border-radius:12px; margin:0 0 18px; }
+.semiconductor-label { background:#e9eff5; color:#405d75; }
+.assigned-label { background:#fff5df; color:#785c27; }
+.statistic-panel { margin-top:24px; }
+.statistic-heading { margin:0 2px 12px; }
+.statistic-heading h2 { font-size:18px; line-height:1.5; }
+.statistic-heading p { font-size:12px; color:var(--muted); margin:5px 0 0; }
+.statistic-panel[data-statistic="overall-including-semiconductor"] .card { border-color:#a9bfaa; }
+.statistic-panel[data-statistic="semiconductor-including-assigned"] .card { border-color:#b3c6d8; }
+.rental-search-area { background:#eef3eb; border:1px solid #dce7d6; border-radius:15px; padding:14px; margin-bottom:18px; }
+.rental-search-area label { display:block; font-size:13px; font-weight:700; margin-bottom:8px; }
+.rental-search-area .search-help { line-height:1.6; }
+.rental-result-label { font-size:12px; overflow-wrap:anywhere; color:#405d4e; margin:18px 2px 0; }
+.rental-no-results { border:1px dashed #d8e2d1; border-radius:14px; margin:20px 0; background:white; }
+.ratio-basis { border:1px solid #dbe5d6; border-radius:16px; background:#eaf0e4; padding:15px; margin:0 0 18px; font-size:12px; color:#435c47; line-height:1.8; }
+.ratio-basis strong { display:block; color:#274e38; font-size:13px; margin-bottom:4px; }
+.ratio-chart-card { padding:20px 14px 16px; }
+.ratio-overview-legend { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px 7px; margin:15px 0 20px; }
+.ratio-overview-legend span { display:flex; align-items:center; gap:5px; min-width:0; font-size:10px; color:#62756a; line-height:1.5; }
+.ratio-chart { display:block; width:100%; height:auto; overflow:visible; }
+.ratio-chart-note { margin:12px 2px 0; color:#788679; font-size:11px; line-height:1.8; }
+.ratio-division { border:1px solid #e0e5ec; border-radius:17px; padding:17px 14px; background:#f1f3f7; margin:18px 0 24px; }
+.ratio-division h3 { font-size:14px; }
+.ratio-split-diagram { display:grid; grid-template-columns:minmax(0,1fr) 32px minmax(0,1fr); align-items:center; gap:3px; }
+.ratio-split-source { background:#fff; border:1px solid #d9e1e9; border-radius:12px; padding:14px 6px; text-align:center; }
+.ratio-split-source > span { font-size:10px; color:#7d8b9b; }
+.ratio-split-source b { font-size:10px; display:block; color:#6d8097; margin:5px 0; }
+.ratio-split-source strong { font-size:17px; display:block; color:#566d86; }
+.ratio-split-source small,.ratio-split-target small { font-size:10px; font-weight:500; margin-left:3px; }
+.ratio-split-links { display:block; width:32px; height:140px; }
+.ratio-split-destinations { display:grid; gap:12px; }
+.ratio-split-target { border:1px solid var(--division-color); border-left-width:3px; background:white; border-radius:10px; padding:10px 7px; color:var(--division-color); }
+.ratio-split-target span { font-size:10px; display:block; }
+.ratio-split-target strong { font-size:17px; display:block; margin-top:3px; }
+.ratio-overview-section { margin-top:26px; }
+.ratio-table-card { background:white; border:1px solid var(--line); border-radius:17px; overflow:hidden; }
+.ratio-overview-table { border-collapse:collapse; width:100%; table-layout:fixed; font-variant-numeric:tabular-nums; }
+.ratio-overview-table caption { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+.ratio-col-month { width:14%; }
+.ratio-col-number { width:18%; }
+.ratio-col-other { width:32%; }
+.ratio-overview-table thead th { font-size:11px; color:#718072; background:#eef2e8; padding:11px 1px; line-height:1.6; font-weight:650; }
+.ratio-overview-table small { display:block; font-weight:400; font-size:9px; color:#879387; line-height:1.6; }
+.ratio-overview-table tbody tr { border-top:1px solid #eef1e9; }
+.ratio-overview-table tbody tr:nth-child(even) { background:#fafbf8; }
+.ratio-overview-table tbody th,.ratio-overview-table tbody td { padding:12px 1px; text-align:center; vertical-align:middle; }
+.ratio-overview-table tbody th strong { font-size:12px; }
+.ratio-number strong { font-size:12px; letter-spacing:-.35px; font-weight:650; white-space:nowrap; }
+.ratio-han strong { color:#32694d; }
+.ratio-min strong { color:#4f85a4; }
+.ratio-overview-table .ratio-separated-row { background:#f6f3f9; }
+.ratio-split-cell > div { display:flex; align-items:baseline; justify-content:center; gap:3px; color:var(--split-color); margin:4px 0; flex-wrap:wrap; }
+.ratio-split-cell span { font-size:9px; }
+.ratio-split-cell strong { font-size:11px; letter-spacing:-.3px; }
+.ratio-split-cell small { flex-basis:100%; margin-top:-3px; }
+.ratio-table-note { font-size:10px; line-height:1.8; color:#7c897b; margin:12px 2px; }
+@media(min-width:600px) { .ratio-overview-table th,.ratio-overview-table td { padding-top:16px; padding-bottom:16px; } .ratio-number strong { font-size:14px; } .ratio-split-cell strong { font-size:13px; } .ratio-overview-legend span { font-size:12px; } }
 .data-tools { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 18px 0; font-size:10px; color:var(--muted); }
-.data-tools button,.retry-button { border:1px solid #d7e2d2; color:var(--ink); background:#fff; border-radius:10px; padding:10px; min-height:40px; font-size:11px; cursor:pointer; flex-shrink:0; }
+.data-tools > span { min-width:0; overflow-wrap:anywhere; }
+.data-tools button,.retry-button { border:1px solid #d7e2d2; color:var(--ink); background:white; border-radius:10px; padding:10px; min-height:40px; font-size:11px; cursor:pointer; flex-shrink:0; }
 .data-tools button:disabled { opacity:.5; cursor:wait; }
 .load-error p { font-size:13px; color:var(--muted); }
-@media(min-width:600px) { .data-tools { padding-right:28px; padding-left:28px; } }
+@media(min-width:600px) { .data-tools { padding-left:28px; padding-right:28px; } }
 </style>
 </head>
 <body><div class="app"><header><small>GYEONGGI REGIONAL HEADQUARTERS</small><h1>현장의 숫자를, 한눈에.</h1><p>경기지역본부 채용비율 현황</p><div class="tag" id="data-period">첫 번째 시트</div></header><div class="data-tools"><span id="sync-status" role="status">데이터 연결 중…</span><button id="refresh-data" type="button">데이터 새로고침</button></div><main id="main"><div class="empty" role="status">현황 데이터를 불러오는 중…</div></main><nav aria-label="현황 분류"></nav></div>
 <script>
 'use strict';
 let DATA = null;
+let SEMICONDUCTOR = null;
+let CURRENT_RATIO = null;
 const COLORS = ['#32694d', '#6095b3', '#a491c1', '#c29a45', '#a0b488', '#bfc6c3'];
 const MODES = [
-  ['all', '전체', '전체 채용 현황', '<path d="M4 20V10h4v10m2 0V4h4v16m2 0v-7h4v7M2 21h20"/>'],
+  ['all', '전체', '26년 신규채용비율', '<path d="M4 20V10h4v10m2 0V4h4v16m2 0v-7h4v7M2 21h20"/>'],
   ['month', '월별', '월별신규채용추이', '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v5m10-5v5M3 11h18"/>'],
   ['branch', '지부별', '지부별 채용 현황', '<path d="M4 21V5l8-3 8 3v16M2 21h20M8 8h2m4 0h2M8 12h2m4 0h2M10 21v-5h4v5"/>'],
-  ['rental', '임대사별', '임대사별 채용현황', '<path d="M3 21V9h8v12M11 21V3h10v18M1 21h22M6 12h2m-2 4h2m6-9h4m-4 4h4m-4 4h4"/>']
+  ['rental', '임대사별', '임대사별 채용현황', '<path d="M3 21V9h8v12M11 21V3h10v18M1 21h22M6 12h2m-2 4h2m6-9h4m-4 4h4m-4 4h4"/>'],
+  ['semiconductor', '반도체', '반도체 현장 현황', '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4M10 10h4v4h-4z"/>'],
+  ['current-ratio', '전체비율', '월별 전체채용비율', '<path d="M3 3v18h18M6 15l5-5 4 3 6-8"/><circle cx="11" cy="10" r="1"/><circle cx="15" cy="13" r="1"/>']
 ];
 let mode = 'all';
 let selected = null;
 let query = '';
+let semiconductorSection = 'active';
+let semiconductorRentalQuery = '';
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const pct = (n, total) => total ? (n / total * 100).toFixed(1) : '0.0';
-function aggregate(rows) {
+function aggregate(rows, categories = DATA.categories) {
   return {
     total: rows.reduce((sum, r) => sum + r.total, 0),
-    counts: DATA.categories.map(c => rows.reduce((sum, r) => sum + r.counts[c], 0))
+    counts: categories.map(c => rows.reduce((sum, r) => sum + r.counts[c], 0))
   };
 }
 const countOf = (a, category) => a.counts[DATA.categories.indexOf(category)];
@@ -122,20 +192,27 @@ function statusBadge(a) {
   const status = companyStatus(a);
   return status ? `<span class="company-status ${status.kind}">${status.label}</span>` : '';
 }
-function sourceNotice(a) {
+function sourceNotice(a, rows) {
   const sum = a.counts.reduce((s, n) => s + n, 0);
-  return sum !== a.total ? `<div class="notice"><p>원본 확인 · 총대수 ${a.total}대 / 소속 합계 ${sum}대</p><p>소속 비율 합계 ${pct(sum, a.total)}%. 3월 시화MTV 현장은 ‘1대에 2명이 타고있음’으로 기록되어 있습니다. 원본 수치를 유지했습니다.</p></div>` : '';
+  const notes = rows.filter(r => Object.values(r.counts).reduce((s, n) => s + n, 0) !== r.total && r.note).map(r => `${esc(r.site)}: ${esc(r.note)}`).join('<br>');
+  return sum !== a.total ? `<div class="notice"><p>원본 확인 · 총대수 ${a.total}대 / 소속 합계 ${sum}대</p><p>소속 비율 합계 ${pct(sum, a.total)}%. 원본 수치를 유지했습니다.</p>${notes ? `<p>${notes}</p>` : ''}</div>` : '';
 }
-function summary(rows) {
-  const a = aggregate(rows);
+function summary(rows, categories = DATA.categories) {
+  const a = aggregate(rows, categories);
   const han = countOf(a, '한노');
   const stats = mode === 'rental'
     ? `<div class="rental-summary"><div class="stat-label"><i class="dot" style="background:${COLORS[0]}"></i>한노</div><div class="rental-value">${han}<small>대</small><span>(${pct(han, a.total)}%)</span></div></div>`
-    : `<div class="stack" aria-hidden="true">${a.counts.map((n, i) => `<span style="background:${COLORS[i]};flex:${n}"></span>`).join('')}</div><div class="stats">${DATA.categories.map((c, i) => `<div><div class="stat-label"><i class="dot" style="background:${COLORS[i]}"></i>${c}</div><div class="stat-value">${a.counts[i]}<small>대 · ${pct(a.counts[i], a.total)}%</small></div></div>`).join('')}</div>`;
-  return `<div class="card"><div class="total"><div><div class="eyebrow">TOTAL EQUIPMENT</div><strong>${a.total}<small>대</small></strong><p class="sub">총대수 기준 100%</p></div><div class="summary-tags"><span class="pill">현장 기록 ${rows.length}건</span>${mode === 'rental' ? statusBadge(a) : ''}</div></div>${stats}${sourceNotice(a)}</div>`;
+    : `<div class="stack" aria-hidden="true">${a.counts.map((n, i) => `<span style="background:${COLORS[i]};flex:${n}"></span>`).join('')}</div><div class="stats">${categories.map((c, i) => `<div><div class="stat-label"><i class="dot" style="background:${COLORS[i]}"></i>${c}</div><div class="stat-value">${a.counts[i]}<small>대 · ${pct(a.counts[i], a.total)}%</small></div></div>`).join('')}</div>`;
+  return `<div class="card"><div class="total"><div><div class="eyebrow">TOTAL EQUIPMENT</div><strong>${a.total}<small>대</small></strong><p class="sub">${mode === 'semiconductor' ? '반도체 현장만 100% 기준' : '총대수 기준 100%'}</p></div><div class="summary-tags"><span class="pill">현장 기록 ${rows.length}건</span>${mode === 'rental' ? statusBadge(a) : ''}</div></div>${stats}${sourceNotice(a, rows)}</div>`;
 }
-function site(r) {
-  return `<article class="card"><div class="site-top"><span class="badge">${r.month}월 · ${esc(r.branch)}</span><span>총 <b>${r.total}대</b></span></div><h3 class="site-name">${esc(r.site)}</h3><div class="meta"><span>원청사</span><span>${esc(r.contractor)}</span><span>임대사</span><span>${esc(r.rental)}</span></div><div class="site-counts">${DATA.categories.map((c, i) => `<div><i class="dot" style="background:${COLORS[i]}"></i> ${c}<b>${r.counts[c]}대 <small>${pct(r.counts[c], r.total)}%</small></b></div>`).join('')}</div>${r.note ? `<p class="note">※ ${esc(r.note)}</p>` : ''}</article>`;
+function statisticPanel(id, title, rows, description, categories = DATA.categories) {
+  return `<section class="statistic-panel" data-statistic="${id}" aria-labelledby="${id}-title"><div class="statistic-heading"><h2 id="${id}-title">${title}</h2><p>${description}</p></div>${summary(rows, categories)}</section>`;
+}
+function site(r, semiconductor = false) {
+  const assigned = semiconductor && semiconductorSection === 'assigned';
+  const label = semiconductor ? assigned ? '배정 완료' : '반도체 현장' : `${r.month}월 · ${esc(r.branch)}`;
+  const categories = semiconductor ? SEMICONDUCTOR.categories : DATA.categories;
+  return `<article class="card"><div class="site-top"><span class="badge ${semiconductor ? assigned ? 'assigned-label' : 'semiconductor-label' : ''}">${label}</span><span>총 <b>${r.total}대</b></span></div><h3 class="site-name">${esc(r.site)}</h3><div class="meta"><span>원청사</span><span>${esc(r.contractor || '미기재')}</span><span>임대사</span><span>${esc(r.rental || '미기재')}</span></div><div class="site-counts">${categories.map((c, i) => `<div><i class="dot" style="background:${COLORS[i]}"></i> ${c}<b>${r.counts[c]}대 <small>${pct(r.counts[c], r.total)}%</small></b></div>`).join('')}</div>${r.note ? `<p class="note">※ ${esc(r.note)}</p>` : ''}</article>`;
 }
 function groupKeys() {
   return mode === 'month' ? DATA.months : [...new Set(DATA.records.map(r => r[mode]))].sort((a, b) => a.localeCompare(b, 'ko'));
@@ -143,7 +220,7 @@ function groupKeys() {
 const matching = key => DATA.records.filter(r => r[mode] === key);
 function matchingQuery(rows) {
   const q = query.trim().toLocaleLowerCase();
-  return rows.filter(r => [r.site, r.contractor, r.rental, r.branch].some(v => v.toLocaleLowerCase().includes(q)));
+  return rows.filter(r => [r.site, r.contractor, r.rental, r.branch].some(v => String(v ?? '').toLocaleLowerCase().includes(q)));
 }
 function groupMetrics(a) {
   const han = countOf(a, '한노');
@@ -163,6 +240,14 @@ function drawGroups() {
 }
 function drawDetails() {
   const host = document.getElementById('details');
+  if (mode === 'all') {
+    drawAllDetails(host);
+    return;
+  }
+  if (mode === 'semiconductor') {
+    drawSemiconductorDetails(host);
+    return;
+  }
   if (mode !== 'all' && selected === null) {
     host.innerHTML = '<p class="choose-hint">위 항목을 누르면 합계와 현장 정보를 볼 수 있어요.</p>';
     return;
@@ -170,18 +255,88 @@ function drawDetails() {
   const rows = mode === 'all' ? DATA.records : matching(selected);
   const label = mode === 'all' ? '전체 누적' : mode === 'month' ? selected + '월' : selected;
   const filtered = matchingQuery(rows);
-  host.innerHTML = `<div class="section-head selection"><h2>${esc(label)}</h2><span class="sub">${mode === 'rental' ? '한노 대수 · 비율' : '소속별 대수 · 비율'}</span></div>${summary(rows)}<div class="section-head"><h3>현장 정보</h3><span class="count">${query.trim() ? filtered.length + ' / ' : ''}${rows.length}건</span></div><div id="sites">${filtered.length ? filtered.map(site).join('') : '<div class="empty">선택한 범위에 검색 결과가 없습니다.</div>'}</div>`;
+  host.innerHTML = `<div class="section-head selection"><h2>${esc(label)}</h2><span class="sub">${mode === 'rental' ? '한노 대수 · 비율' : '소속별 대수 · 비율'}</span></div>${summary(rows)}<div class="section-head"><h3>현장 정보</h3><span class="count">${query.trim() ? filtered.length + ' / ' : ''}${rows.length}건</span></div><div id="sites">${filtered.length ? filtered.map(r => site(r)).join('') : '<div class="empty">선택한 범위에 검색 결과가 없습니다.</div>'}</div>`;
+}
+function drawAllDetails(host) {
+  const rows = DATA.records;
+  const semiconductorRows = SEMICONDUCTOR.records;
+  const combinedRows = [...rows, ...semiconductorRows];
+  const filtered = matchingQuery(rows);
+  host.innerHTML = statisticPanel('overall-excluding-semiconductor', '전체누적(반도체현장제외)', rows, '첫 번째 시트의 전체 현장 기록을 합산합니다.')
+    + statisticPanel('overall-including-semiconductor', '반도체 현장포함', combinedRows, `전체누적 ${aggregate(rows).total}대 + 반도체 현장 ${aggregate(semiconductorRows).total}대 · 배정 완료 제외`)
+    + `<p class="search-help">반도체 현장의 상세 정보는 하단 반도체 메뉴에서 확인할 수 있어요.</p><div class="section-head selection"><h3>현장 정보 (반도체 제외)</h3><span class="count">${query.trim() ? filtered.length + ' / ' : ''}${rows.length}건</span></div><div id="sites">${filtered.length ? filtered.map(r => site(r)).join('') : '<div class="empty">검색 결과가 없습니다.</div>'}</div>`;
+}
+function semiconductorRows() {
+  return semiconductorSection === 'assigned' ? SEMICONDUCTOR.assignedRecords : SEMICONDUCTOR.records;
+}
+function matchingSemiconductorRental(rows) {
+  const normalize = value => String(value ?? '').replace(/\s+/g, '').toLocaleLowerCase();
+  const term = normalize(semiconductorRentalQuery);
+  return rows.filter(r => normalize(r.rental).includes(term));
+}
+function drawSemiconductorDetails(host) {
+  const activeRows = matchingSemiconductorRental(SEMICONDUCTOR.records);
+  const assignedRows = matchingSemiconductorRental(SEMICONDUCTOR.assignedRecords);
+  const combinedRows = [...activeRows, ...assignedRows];
+  const rows = semiconductorSection === 'assigned' ? assignedRows : activeRows;
+  const filtered = matchingQuery(rows);
+  const assigned = semiconductorSection === 'assigned';
+  const searchingRental = Boolean(semiconductorRentalQuery.trim());
+  const companies = [...new Set(combinedRows.map(r => r.rental))];
+  let statistics;
+  if (searchingRental && !combinedRows.length) {
+    statistics = '<div class="empty rental-no-results" role="status">일치하는 임대사가 없습니다. 임대사명을 다시 확인해 주세요.</div>';
+  } else if (searchingRental) {
+    statistics = `<p class="rental-result-label">검색된 임대사: ${companies.map(esc).join(' · ')}</p>`
+      + statisticPanel('semiconductor-including-assigned', '반도체 현장(배정완료포함)', combinedRows, '검색한 임대사의 진행중 현장과 배정 완료 현장을 합산합니다.', SEMICONDUCTOR.categories)
+      + statisticPanel('semiconductor-excluding-assigned', '반도체 현장(현재배정진행중)', activeRows, '검색한 임대사의 배정 완료 현장을 제외한 통계입니다.', SEMICONDUCTOR.categories);
+  } else {
+    statistics = statisticPanel('semiconductor-excluding-assigned', '반도체 현장(현재배정진행중)', SEMICONDUCTOR.records, '배정 완료 현장을 제외한 현재 진행중 현장만 합산합니다.', SEMICONDUCTOR.categories);
+  }
+  host.innerHTML = statistics
+    + `<div class="section-head selection"><h3>${assigned ? '배정 완료 현장 정보' : '현재 진행중 현장 정보'}</h3><span class="count">${query.trim() ? filtered.length + ' / ' : ''}${rows.length}건</span></div>${assigned ? '<p class="assigned-guide">배정 완료 기록은 임대사 검색 시 ‘배정완료포함’ 통계에 반영합니다. 현재 배정 진행중 통계와 전체 메뉴의 두 통계에는 포함하지 않습니다.</p>' : ''}<div id="sites">${filtered.length ? filtered.map(r => site(r, true)).join('') : '<div class="empty">검색 결과가 없습니다.</div>'}</div>`;
+  document.getElementById('semiconductor-rental-status').textContent = searchingRental ? `일치하는 임대사 ${companies.length}곳 · 각 통계의 총대수를 100%로 계산합니다.` : '임대사를 입력하면 배정 완료 포함·현재 배정 진행중 통계를 함께 볼 수 있어요.';
+}
+function drawSemiconductorTabs() {
+  document.querySelectorAll('[data-semiconductor-section]').forEach(button => {
+    button.setAttribute('aria-pressed', String(button.dataset.semiconductorSection === semiconductorSection));
+    const rows = button.dataset.semiconductorSection === 'assigned' ? SEMICONDUCTOR.assignedRecords : SEMICONDUCTOR.records;
+    button.querySelector('span').textContent = `${matchingSemiconductorRental(rows).length}건`;
+  });
 }
 function drawSearchStatus() {
-  document.getElementById('search-status').textContent = query.trim() ? `전체 검색 결과 ${matchingQuery(DATA.records).length}건 · 합계와 비율은 검색 전 기준입니다.` : '현장명·원청사·임대사로 검색할 수 있어요.';
+  const rows = mode === 'semiconductor' ? matchingSemiconductorRental(semiconductorRows()) : DATA.records;
+  document.getElementById('search-status').textContent = query.trim() ? `${mode === 'semiconductor' ? '선택한 반도체 목록' : mode === 'all' ? '반도체 제외 현장' : '전체'} 검색 결과 ${matchingQuery(rows).length}건 · 합계와 비율은 검색 전 기준입니다.` : mode === 'all' ? '반도체 제외 현장 목록을 검색합니다. 반도체 현장은 반도체 메뉴에서 검색해 주세요.' : '현장명·원청사·임대사로 검색할 수 있어요.';
 }
 function draw() {
   document.querySelector('nav').innerHTML = MODES.map(([key, label, title, icon]) => `<button data-mode="${key}" class="${mode === key ? 'active' : ''}" aria-pressed="${mode === key}"><svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg>${label}</button>`).join('');
+  if (mode === 'current-ratio') {
+    drawCurrentRatio();
+    return;
+  }
+  const semiconductor = mode === 'semiconductor';
+  const months = [...DATA.months].sort((a, b) => a - b);
+  document.getElementById('data-period').textContent = semiconductor ? '반도체 현장 · 두 번째 시트' : `${DATA.year}년 ${months[0]}월 — ${months[months.length - 1]}월 · ${mode === 'all' ? '전체 현황' : '첫 번째 시트'}`;
   const title = MODES.find(m => m[0] === mode)[2];
-  document.getElementById('main').innerHTML = `<div class="section-head"><div><div class="eyebrow">HIRING OVERVIEW</div><h2>${title}</h2><p class="sub">${mode === 'all' ? `${Math.min(...DATA.months)}~${Math.max(...DATA.months)}월 전체 현장 기록을 합산했어요.` : '목록에서 비율을 비교하고 현장을 확인하세요.'}</p></div><span class="count">${DATA.year}</span></div><div class="search-area"><input class="search" id="search" type="search" aria-label="현장명, 원청사, 임대사 검색" aria-describedby="search-status" placeholder="현장명, 원청사, 임대사 검색" value="${esc(query)}"><p id="search-status" class="search-help" role="status"></p></div>${mode === 'rental' ? '<p class="rental-guide">한노 비율 <b>40% 이상 우호업체</b> · <b>30% 이하 비협조업체</b></p>' : ''}${mode !== 'all' ? '<div class="group-list" id="groups"></div>' : ''}<div id="details"></div><p class="footnote">비율 = 소속 대수 ÷ 선택 범위의 총대수 × 100 (소수점 첫째 자리 반올림).<br>직원은 원본의 ‘직원(비노조)’입니다. 같은 현장도 월·임대사별 기록을 각각 합산합니다.<br>검색은 선택 목록과 현장 목록에 적용됩니다. 합계·비율·업체 표시는 검색 전 해당 범위 전체 기준입니다.<br>${mode === 'rental' ? '업체 표시는 반올림 전 한노 비율 기준입니다. 30% 초과 40% 미만은 별도 표기하지 않습니다.' : '색상 막대는 소속 구성의 상대적 비중을 나타냅니다. 정확한 총대수 대비 비율은 숫자로 확인하세요.'}</p>`;
+  const description = semiconductor ? '현재 배정 진행 현황과 임대사별 통계를 확인하세요.' : mode === 'all' ? '반도체 현장 포함·제외 통계를 함께 확인하세요.' : '목록에서 비율을 비교하고 현장을 확인하세요.';
+  const semiconductorRentalSearch = `<div class="rental-search-area"><label for="semiconductor-rental-search">임대사별 반도체 통계</label><input class="search" id="semiconductor-rental-search" type="search" autocomplete="off" aria-describedby="semiconductor-rental-status" placeholder="임대사명 입력 (예: 신우개발)" value="${esc(semiconductorRentalQuery)}"><p class="search-help" id="semiconductor-rental-status" role="status"></p></div>`;
+  const semiconductorControls = `<div class="separate-guide"><strong>반도체 현장만 따로 확인해요</strong>전체 메뉴의 ‘반도체 현장포함’ 통계에는 배정 완료를 제외한 현장만 더합니다. 월별·지부별·임대사별 통계에는 반영하지 않습니다.</div><div class="semiconductor-tabs" role="group" aria-label="반도체 현장 구분"><button data-semiconductor-section="active" aria-pressed="${semiconductorSection === 'active'}">현재 진행중<span>${SEMICONDUCTOR.records.length}건</span></button><button data-semiconductor-section="assigned" aria-pressed="${semiconductorSection === 'assigned'}">배정 완료<span>${SEMICONDUCTOR.assignedRecords.length}건</span></button></div>`;
+  const footnote = semiconductor
+    ? '기본 통계는 현재 배정 진행중 현장만 합산합니다. 임대사별 통계 검색에 입력하면 해당 업체의 배정 완료 포함·제외 통계를 함께 표시합니다.<br>월·지부는 원본에 기재되어 있지 않아 표시하지 않습니다. 원청사 공란은 ‘미기재’로 표시합니다.<br>위쪽 현장 검색과 현장 구분 버튼은 상세 목록에만 적용됩니다. 임대사별 통계 검색은 해당 업체의 통계와 목록에 함께 적용됩니다.'
+    : `직원은 원본의 ‘직원(비노조)’입니다. 같은 현장도 월·임대사별 기록을 각각 합산합니다.<br>검색은 선택 목록과 현장 목록에 적용됩니다. 합계·비율·업체 표시는 검색 전 해당 범위 전체 기준입니다. 전체 메뉴의 현장 목록은 반도체를 제외한 기록입니다.<br>${mode === 'rental' ? '업체 표시는 반올림 전 한노 비율 기준입니다. 30% 초과 40% 미만은 별도 표기하지 않습니다.' : '색상 막대는 소속 구성의 상대적 비중을 나타냅니다. 정확한 총대수 대비 비율은 숫자로 확인하세요.'}`;
+  document.getElementById('main').innerHTML = `<div class="section-head"><div><div class="eyebrow">${semiconductor ? 'SEMICONDUCTOR SITES' : 'HIRING OVERVIEW'}</div><h2>${title}</h2><p class="sub">${description}</p></div><span class="count">${semiconductor ? '별도 현황' : DATA.year}</span></div><div class="search-area"><input class="search" id="search" type="search" aria-label="현장명, 원청사, 임대사 검색" aria-describedby="search-status" placeholder="현장명, 원청사, 임대사 검색" value="${esc(query)}"><p id="search-status" class="search-help" role="status"></p></div>${semiconductor ? semiconductorRentalSearch + semiconductorControls : ''}${mode === 'rental' ? '<p class="rental-guide">한노 비율 <b>40% 이상 우호업체</b> · <b>30% 이하 비협조업체</b></p>' : ''}${mode !== 'all' && !semiconductor ? '<div class="group-list" id="groups"></div>' : ''}<div id="details"></div><p class="footnote">비율 = 소속 대수 ÷ ${semiconductor ? '반도체 현장의' : '선택 범위의'} 총대수 × 100 (소수점 첫째 자리 반올림).<br>${footnote}</p>`;
   drawGroups();
   drawDetails();
   drawSearchStatus();
+  if (semiconductor) {
+    drawSemiconductorTabs();
+    document.getElementById('semiconductor-rental-search').addEventListener('input', e => {
+      semiconductorRentalQuery = e.target.value;
+      drawSemiconductorTabs();
+      drawDetails();
+      drawSearchStatus();
+    });
+  }
   document.getElementById('search').addEventListener('input', e => {
     query = e.target.value;
     drawGroups();
@@ -195,8 +350,19 @@ document.addEventListener('click', e => {
     mode = tab.dataset.mode;
     selected = null;
     query = '';
+    semiconductorSection = 'active';
+    semiconductorRentalQuery = '';
     draw();
     window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  const semiconductorTab = e.target.closest('[data-semiconductor-section]');
+  if (semiconductorTab) {
+    semiconductorSection = semiconductorTab.dataset.semiconductorSection;
+    query = '';
+    document.getElementById('search').value = '';
+    drawSemiconductorTabs();
+    drawDetails();
+    drawSearchStatus();
   }
   const group = e.target.closest('[data-group]');
   if (group) {
@@ -207,6 +373,91 @@ document.addEventListener('click', e => {
     document.querySelector('.selection').scrollIntoView({behavior: reducedMotion ? 'instant' : 'smooth', block: 'start'});
   }
 });
+function ratioColor(category) {
+  return {'한노': '#32694d', '민노': '#6095b3', '섬유': '#a491c1', '연합': '#c29a45', '기타노조 미분리': '#93a4b7', '직원': '#a0b488'}[category];
+}
+function ratioLabel(category) {
+  return category === '직원' ? '직원(비노조)' : category;
+}
+function currentRatioValue(record, category) {
+  return record.counts[category] === null ? null : record.counts[category] / record.total * 100;
+}
+function currentRatioTrend() {
+  const records = [...CURRENT_RATIO.records].sort((a, b) => a.month - b.month);
+  const width = 560, height = 340, left = 52, right = 25, top = 32, bottom = 40;
+  const plotWidth = width - left - right, plotHeight = height - top - bottom;
+  const allValues = records.flatMap(r => CURRENT_RATIO.categories.map(c => currentRatioValue(r, c)).filter(v => v !== null));
+  const ceiling = Math.max(50, Math.ceil(Math.max(...allValues, 0) / 10) * 10);
+  const x = month => left + (records.length === 1 ? plotWidth / 2 : records.findIndex(r => r.month === month) / (records.length - 1) * plotWidth);
+  const y = value => top + plotHeight - value / ceiling * plotHeight;
+  const point = (r, category) => ({month: r.month, value: currentRatioValue(r, category), x: x(r.month)});
+  const path = points => points.map((p, i) => `${i ? 'L' : 'M'}${p.x.toFixed(3)},${y(p.value).toFixed(3)}`).join(' ');
+  const splitMonth = CURRENT_RATIO.basis.separatedFromMonth;
+  const before = records.filter(r => r.month < splitMonth);
+  const after = records.filter(r => r.month >= splitMonth);
+  const branchOrigin = before[before.length - 1];
+  let lines = '', pointsMarkup = '', branches = '';
+  CURRENT_RATIO.categories.forEach(category => {
+    const seriesRecords = category === '기타노조 미분리' ? before : records;
+    const points = seriesRecords.filter(r => r.counts[category] !== null).map(r => point(r, category));
+    const color = ratioColor(category);
+    if (points.length > 1) lines += `<path data-ratio-line="${esc(category)}" d="${path(points)}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    if ((category === '섬유' || category === '연합') && branchOrigin && points.length) {
+      const source = point(branchOrigin, '기타노조 미분리');
+      const target = points[0];
+      branches += `<path data-ratio-branch="${category}" data-source-month="${source.month}" data-target-month="${target.month}" data-source-value="${source.value.toFixed(6)}" data-target-value="${target.value.toFixed(6)}" d="${path([source, target])}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linecap="round"/>`;
+    }
+    pointsMarkup += points.map(p => `<g class="ratio-overview-point" data-ratio-series="${esc(category)}" data-ratio-month="${p.month}" data-ratio-value="${p.value.toFixed(6)}"><title>${p.month}월 ${ratioLabel(category)} ${p.value.toFixed(1)}%</title><circle cx="${p.x.toFixed(3)}" cy="${y(p.value).toFixed(3)}" r="${p.month === records[records.length - 1].month ? 4.8 : 3.4}" fill="${color}" stroke="white" stroke-width="1"/></g>`).join('');
+  });
+  const splitStart = after.length ? x(after[0].month) - (records.length > 1 ? plotWidth / (records.length - 1) / 2 : 0) : 0;
+  return `<section class="card ratio-chart-card" aria-labelledby="current-ratio-trend-title"><div class="section-head"><div><h3 id="current-ratio-trend-title">소속별 비율 추이</h3><p class="sub">모든 소속의 ${records[0].month}~${records[records.length - 1].month}월 변화를 함께 봅니다.</p></div></div><div class="ratio-overview-legend" aria-label="소속별 그래프 범례">${CURRENT_RATIO.categories.map(c => `<span><i class="dot" style="background:${ratioColor(c)}"></i>${ratioLabel(c)}</span>`).join('')}</div><svg id="current-ratio-trend" class="ratio-chart" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="current-ratio-chart-title current-ratio-chart-desc"><title id="current-ratio-chart-title">모든 소속의 월별 전체채용비율</title><desc id="current-ratio-chart-desc">기타노조 미분리는 ${splitMonth - 1}월까지 한 선으로 표시하고 ${splitMonth}월부터 섬유와 연합 두 선으로 나눕니다. 이전 월의 개별 소속 수치를 추정하지 않습니다. 모든 정확한 수치는 아래 월별 표에 있습니다.</desc>${after.length ? `<rect x="${splitStart}" y="${top - 6}" width="${width - right - splitStart + 7}" height="${plotHeight + 12}" rx="9" fill="#f2eff7"/><text x="${width - right}" y="${top - 12}" text-anchor="end" font-size="17" fill="#8f7da4">${splitMonth}월부터 분리</text>` : ''}${Array.from({length: 6}, (_, i) => {const value = ceiling / 5 * i;return `<line x1="${left}" x2="${width - right}" y1="${y(value)}" y2="${y(value)}" stroke="#e4eae1"/><text x="${left - 9}" y="${y(value) + 5}" text-anchor="end" font-size="18" fill="#849184">${Number(value.toFixed(1))}%</text>`;}).join('')}${lines}${branches}${pointsMarkup}${records.map(r => `<text x="${x(r.month)}" y="${height - 13}" text-anchor="middle" font-size="20" fill="#71826f">${r.month}월</text>`).join('')}</svg><p class="ratio-chart-note">기타노조 미분리에서 이어진 선이 ${splitMonth}월부터 섬유·연합으로 갈라집니다. ${splitMonth - 1}월까지의 섬유·연합 개별 수치는 미분리 자료입니다.</p></section>`;
+}
+function currentRatioDivision() {
+  const before = CURRENT_RATIO.records.filter(r => r.month < CURRENT_RATIO.basis.separatedFromMonth).sort((a, b) => a.month - b.month);
+  const after = [...CURRENT_RATIO.records].sort((a, b) => a.month - b.month).find(r => r.month >= CURRENT_RATIO.basis.separatedFromMonth);
+  const source = before[before.length - 1];
+  if (!source || !after) return '';
+  return `<section class="ratio-division" aria-label="기타노조 미분리에서 섬유와 연합으로 집계 구분 변경"><div class="section-head"><h3>${after.month}월부터, 두 소속으로 구분해요</h3></div><div class="ratio-split-diagram"><div class="ratio-split-source"><span>${source.month}월까지</span><b>기타노조 미분리</b><strong>${source.counts['기타노조 미분리']}대 <small>${pct(source.counts['기타노조 미분리'], source.total)}%</small></strong></div><svg class="ratio-split-links" viewBox="0 0 40 140" aria-hidden="true"><path d="M0 70H12Q20 70 20 45T40 30" fill="none" stroke="${ratioColor('섬유')}" stroke-width="3"/><path d="M0 70H12Q20 70 20 95T40 110" fill="none" stroke="${ratioColor('연합')}" stroke-width="3"/></svg><div class="ratio-split-destinations">${['섬유', '연합'].map(c => `<div class="ratio-split-target" style="--division-color:${ratioColor(c)}"><span>${after.month}월 · ${c}</span><strong>${after.counts[c]}대 <small>${pct(after.counts[c], after.total)}%</small></strong></div>`).join('')}</div></div></section>`;
+}
+function currentRatioOverview() {
+  const records = [...CURRENT_RATIO.records].sort((a, b) => a.month - b.month);
+  const cell = (r, c, extraClass = '') => `<td class="ratio-number ${extraClass}" data-ratio-category="${esc(c)}" data-ratio-count="${r.counts[c]}" data-ratio-percent="${currentRatioValue(r, c).toFixed(6)}"><strong>${pct(r.counts[c], r.total)}%</strong><small>${r.counts[c]}대</small></td>`;
+  const notes = records.filter(r => r.note || Object.values(r.counts).filter(n => n !== null).reduce((s, n) => s + n, 0) !== r.total).map(r => {
+    const sum = Object.values(r.counts).filter(n => n !== null).reduce((s, n) => s + n, 0);
+    return `<div class="notice" data-ratio-source-notice data-ratio-note-month="${r.month}"><p><strong>${r.month}월 비고</strong> · ${esc(r.note)}</p>${sum !== r.total ? `<p>총대수 ${r.total}대 / 소속 합계 ${sum}대 · 비율은 총대수 ${r.total}대 기준입니다.</p>` : ''}</div>`;
+  }).join('');
+  return `<section class="ratio-overview-section" aria-labelledby="ratio-overview-title"><div class="section-head"><div><h3 id="ratio-overview-title">${records[0].month}~${records[records.length - 1].month}월 전체채용비율</h3><p class="sub">각 월의 비율과 대수를 한눈에 확인하세요.</p></div></div><div class="ratio-table-card"><table class="ratio-overview-table"><caption>해당 월 미정 제외 총대수 기준 소속별 비율</caption><colgroup><col class="ratio-col-month"><col class="ratio-col-number"><col class="ratio-col-number"><col class="ratio-col-other"><col class="ratio-col-number"></colgroup><thead><tr><th scope="col">월<small>총대수</small></th><th scope="col">한노</th><th scope="col">민노</th><th scope="col">기타노조<small>${CURRENT_RATIO.basis.separatedFromMonth}월부터 분리</small></th><th scope="col">직원</th></tr></thead><tbody>${records.map(r => `<tr data-ratio-row-month="${r.month}" class="${r.month >= CURRENT_RATIO.basis.separatedFromMonth ? 'ratio-separated-row' : ''}"><th scope="row"><strong>${r.month}월</strong><small>${r.total}대</small></th>${cell(r, '한노', 'ratio-han')}${cell(r, '민노', 'ratio-min')}${r.month < CURRENT_RATIO.basis.separatedFromMonth ? cell(r, '기타노조 미분리') : `<td class="ratio-split-cell">${['섬유', '연합'].map(c => `<div data-ratio-category="${c}" data-ratio-count="${r.counts[c]}" data-ratio-percent="${currentRatioValue(r, c).toFixed(6)}" style="--split-color:${ratioColor(c)}"><span>${c}</span><strong>${pct(r.counts[c], r.total)}%</strong><small>${r.counts[c]}대</small></div>`).join('')}</td>`}${cell(r, '직원')}</tr>`).join('')}</tbody></table></div><p class="ratio-table-note">${CURRENT_RATIO.basis.separatedFromMonth - 1}월까지 기타노조는 미분리 자료이며, ${CURRENT_RATIO.basis.separatedFromMonth}월부터 섬유·연합으로 나눠 표시합니다. ${CURRENT_RATIO.basis.separatedFromMonth}월 원본의 기타노조 미분리는 0대입니다. 직원은 비노조 직원입니다.</p>${notes}</section>`;
+}
+function drawCurrentRatio() {
+  const records = [...CURRENT_RATIO.records].sort((a, b) => a.month - b.month);
+  document.getElementById('data-period').textContent = `${CURRENT_RATIO.year}년 월별 전체 현황 · 세 번째 시트`;
+  document.getElementById('main').innerHTML = `<div class="section-head"><div><div class="eyebrow">REGIONAL MONTHLY SNAPSHOT</div><h2>월별 전체채용비율</h2><p class="sub">${records[0].month}~${records[records.length - 1].month}월 전체 현황을 한눈에</p></div><span class="count">${CURRENT_RATIO.year}</span></div><div class="ratio-basis"><strong>미정 인원을 제외한 현재 기준입니다</strong>미정 인원을 제외한 총수를 기준으로 소속별 비율을 계산합니다. 미정을 포함한 전체대수 기준보다 각 소속비율이 조금더 높게 보입니다.</div>${currentRatioTrend()}${currentRatioDivision()}${currentRatioOverview()}<p class="footnote">각 월의 전체 현황을 보여주는 자료입니다. 월별 신규채용이나 반도체 현장의 누적 통계와는 집계 범위가 다릅니다.<br>비율 = 소속 대수 ÷ 해당 월의 미정 제외 총대수 × 100 (소수점 첫째 자리 반올림). 월별 수치를 더해 하나의 누적 총대수로 표시하지 않습니다.</p>`;
+}
+function validateCurrentRatioData(data) {
+  const categories = ['한노', '민노', '섬유', '연합', '기타노조 미분리', '직원'];
+  if (!data || !Number.isInteger(data.year) || !data.basis || data.basis.unknownExcluded !== true ||
+      !Number.isInteger(data.basis.separatedFromMonth) || data.basis.separatedFromMonth < 1 || data.basis.separatedFromMonth > 12 ||
+      !Array.isArray(data.categories) || data.categories.length !== categories.length ||
+      !categories.every((c, i) => data.categories[i] === c) || !Array.isArray(data.records) || !data.records.length) {
+    throw new Error('월별 전체채용비율 JSON 형식을 확인해 주세요.');
+  }
+  const months = new Set();
+  for (const r of data.records) {
+    if (!r || !Number.isInteger(r.month) || r.month < 1 || r.month > 12 || months.has(r.month) ||
+        !Number.isInteger(r.total) || r.total <= 0 || !r.counts || !r.reportedPercentages || typeof r.note !== 'string') {
+      throw new Error('월별 전체채용비율 기록을 확인해 주세요.');
+    }
+    for (const c of categories) {
+      const count = r.counts[c], reported = r.reportedPercentages[c];
+      const unseparated = (c === '섬유' || c === '연합') && r.month < data.basis.separatedFromMonth;
+      if (unseparated ? count !== null || reported !== null : !Number.isInteger(count) || count < 0 || !Number.isFinite(reported) || reported < 0) {
+        throw new Error('월별 소속 수치와 미분리 항목을 확인해 주세요.');
+      }
+    }
+    months.add(r.month);
+  }
+  return data;
+}
 function validateData(data) {
   const categories = ['한노', '민노', '섬유', '연합', '직원', '미정'];
   if (!data || !Number.isInteger(data.year) || !Array.isArray(data.months) || !data.months.length ||
@@ -228,54 +479,105 @@ function validateData(data) {
   }
   return data;
 }
-let loading = false;
-let dataSignature = '';
+function validateSemiconductorData(data, mainCategories = DATA.categories) {
+  if (!data || typeof data.sheet !== 'string' ||
+      !Array.isArray(data.categories) || data.categories.length !== mainCategories.length ||
+      !data.categories.every((c, i) => c === mainCategories[i]) ||
+      !Array.isArray(data.records) || !Array.isArray(data.assignedRecords)) {
+    throw new Error('반도체 JSON 형식을 확인해 주세요.');
+  }
+  const ids = new Set();
+  for (const rows of [data.records, data.assignedRecords]) {
+    for (const r of rows) {
+      if (!r || r.id == null || ids.has(r.id) || !Number.isInteger(r.total) || r.total < 0 ||
+          !['site', 'contractor', 'rental', 'note'].every(k => typeof r[k] === 'string') ||
+          !r.counts || !data.categories.every(c => Number.isInteger(r.counts[c]) && r.counts[c] >= 0)) {
+        throw new Error('반도체 현장 기록을 확인해 주세요.');
+      }
+      ids.add(r.id);
+    }
+  }
+  return data;
+}
+const DATA_FILES = [
+  {path: './data/01_전체_월별_지부별_임대사별.json', label: '전체·월별·지부별·임대사별'},
+  {path: './data/02_반도체.json', label: '반도체'},
+  {path: './data/03_전체비율.json', label: '전체비율'}
+];
+let loadingData = false;
+let loadedSignature = '';
+async function fetchDataset(file, signal) {
+  let response;
+  try {
+    response = await fetch(new URL(file.path, document.baseURI), {cache: 'no-store', signal});
+  } catch (error) {
+    throw new Error(`${file.label} 데이터를 불러오지 못했습니다. 연결을 확인해 주세요.`);
+  }
+  if (!response.ok) throw new Error(`${file.label} 데이터를 불러오지 못했습니다. (HTTP ${response.status})`);
+  try {
+    return await response.json();
+  } catch (error) {
+    throw new Error(`${file.label} JSON 형식을 확인해 주세요.`);
+  }
+}
+function validateDataset(label, validator) {
+  try { return validator(); }
+  catch (error) { throw new Error(`${label} 데이터 확인이 필요합니다. ${error.message}`); }
+}
 async function loadData() {
-  if (loading) return;
-  loading = true;
-  const button = document.getElementById('refresh-data');
+  if (loadingData) return;
+  loadingData = true;
   const status = document.getElementById('sync-status');
-  button.disabled = true;
+  const refresh = document.getElementById('refresh-data');
+  refresh.disabled = true;
   status.textContent = '데이터를 확인하고 있어요…';
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 15000);
+  const timeout = setTimeout(() => controller.abort(), 15000);
   try {
-    const response = await fetch(new URL('./data/sheet1.json', document.baseURI), {cache: 'no-store', signal: controller.signal});
-    if (!response.ok) throw new Error('데이터 응답 오류');
-    const next = validateData(await response.json());
-    const signature = JSON.stringify(next);
-    if (signature !== dataSignature) {
-      const activeInput = document.activeElement?.id === 'search' ? document.activeElement : null;
-      const selection = activeInput ? [activeInput.selectionStart, activeInput.selectionEnd] : null;
+    const raw = await Promise.all(DATA_FILES.map(file => fetchDataset(file, controller.signal)));
+    const nextMain = validateDataset(DATA_FILES[0].label, () => validateData(raw[0]));
+    const nextSemiconductor = validateDataset(DATA_FILES[1].label, () => validateSemiconductorData(raw[1], nextMain.categories));
+    const nextCurrentRatio = validateDataset(DATA_FILES[2].label, () => validateCurrentRatioData(raw[2]));
+    const signature = JSON.stringify([nextMain, nextSemiconductor, nextCurrentRatio]);
+    if (signature !== loadedSignature) {
+      const input = document.activeElement;
+      const focusedId = input?.tagName === 'INPUT' ? input.id : null;
+      const selection = focusedId ? [input.selectionStart, input.selectionEnd] : null;
       const scrollTop = window.scrollY;
-      DATA = next;
-      dataSignature = signature;
-      if (mode !== 'all' && !groupKeys().includes(selected)) selected = null;
-      const months = [...DATA.months].sort((a, b) => a - b);
-      document.getElementById('data-period').textContent = `${DATA.year}년 ${months[0]}월 — ${months[months.length - 1]}월 · 첫 번째 시트`;
+      DATA = nextMain;
+      SEMICONDUCTOR = nextSemiconductor;
+      CURRENT_RATIO = nextCurrentRatio;
+      if (['month', 'branch', 'rental'].includes(mode) && !groupKeys().includes(selected)) selected = null;
       draw();
-      if (selection) {
-        const input = document.getElementById('search');
-        input.focus({preventScroll: true});
-        input.setSelectionRange(...selection);
+      loadedSignature = signature;
+      if (focusedId) {
+        const nextInput = document.getElementById(focusedId);
+        if (nextInput) {
+          nextInput.focus({preventScroll: true});
+          nextInput.setSelectionRange(...selection);
+        }
       }
       window.scrollTo({top: scrollTop, behavior: 'instant'});
     }
     const time = new Date().toLocaleTimeString('ko-KR', {hour: '2-digit', minute: '2-digit', hour12: false});
     status.textContent = `${time} 확인 · 1분마다 자동 갱신`;
   } catch (error) {
-    status.textContent = DATA ? '갱신 실패 · 이전 데이터를 표시합니다.' : '데이터를 불러오지 못했어요.';
+    status.textContent = DATA ? `갱신 실패 · 마지막 정상 데이터를 표시합니다. ${error.message}` : '데이터를 불러오지 못했어요.';
     if (!DATA) {
-      document.getElementById('main').innerHTML = `<div class="card load-error"><h2>데이터 연결을 확인해 주세요</h2><p>${location.protocol === 'file:' ? 'HTML 파일을 직접 열면 외부 JSON을 읽을 수 없습니다. HTML과 data 폴더를 함께 웹서버에 올린 뒤 웹주소로 접속해 주세요.' : 'data/sheet1.json 파일의 위치와 JSON 형식을 확인한 뒤 다시 시도해 주세요.'}</p><button class="retry-button" data-retry>다시 시도</button></div>`;
+      const message = location.protocol === 'file:'
+        ? '이 화면은 웹주소로 열어야 합니다. HTML과 data 폴더를 같은 웹서버에 올린 뒤 접속해 주세요.'
+        : error.message;
+      document.getElementById('main').innerHTML = `<div class="card load-error"><h2>데이터 연결을 확인해 주세요</h2><p>${esc(message)}</p><button type="button" class="retry-button" data-retry>다시 시도</button></div>`;
     }
   } finally {
-    clearTimeout(timer);
-    loading = false;
-    button.disabled = false;
+    clearTimeout(timeout);
+    controller.abort();
+    loadingData = false;
+    refresh.disabled = false;
   }
 }
 document.getElementById('refresh-data').addEventListener('click', () => loadData());
-document.addEventListener('click', e => { if (e.target.closest('[data-retry]')) loadData(); });
+document.addEventListener('click', event => { if (event.target.closest('[data-retry]')) loadData(); });
 document.addEventListener('visibilitychange', () => { if (!document.hidden) loadData(); });
 window.addEventListener('focus', () => loadData());
 setInterval(() => { if (!document.hidden) loadData(); }, 60000);
