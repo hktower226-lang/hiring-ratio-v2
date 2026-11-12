@@ -94,3 +94,5 @@ git push https://github.com/hktower226-lang/hiring-ratio-v2.git HEAD:refs/heads/
 ```
 
 Preserve concurrent remote changes and avoid force-pushing. GitHub API access is separate from Git access; a blocked API request does not establish a Git authentication failure.
+
+건산은 연합과 같은 소속이며 `counts.연합`으로 기록한다. 해체 대수를 통계에서 제외하라는 요청은 비고에만 기록하고 `total`이나 `counts`에 더하지 않는다.
