@@ -623,7 +623,9 @@
           {
             "equipmentNo": "2-1",
             "affiliation": "민노",
-            "names": [],
+            "names": [
+              "조성연"
+            ],
             "status": "근무"
           },
           {
@@ -637,7 +639,9 @@
           {
             "equipmentNo": "2-3",
             "affiliation": "민노",
-            "names": [],
+            "names": [
+              "김영민"
+            ],
             "status": "근무"
           },
           {
@@ -651,7 +655,9 @@
           {
             "equipmentNo": "2-5",
             "affiliation": "민노",
-            "names": [],
+            "names": [
+              "최용석"
+            ],
             "status": "근무"
           },
           {
@@ -687,7 +693,9 @@
           {
             "equipmentNo": "2-12",
             "affiliation": "민노",
-            "names": [],
+            "names": [
+              "전봉재"
+            ],
             "status": "근무"
           },
           {
@@ -713,7 +721,8 @@
             "names": [
               "이상건"
             ],
-            "status": "근무"
+            "status": "출근대기",
+            "note": "출근전"
           },
           {
             "equipmentNo": "2-18",
@@ -732,7 +741,9 @@
           {
             "equipmentNo": "2-24",
             "affiliation": "민노",
-            "names": [],
+            "names": [
+              "김영택"
+            ],
             "status": "근무"
           },
           {
@@ -746,20 +757,24 @@
           {
             "equipmentNo": "2-26",
             "affiliation": "민노",
-            "names": [],
+            "names": [
+              "한만흥"
+            ],
             "status": "근무"
           },
           {
             "equipmentNo": "2-27",
-            "affiliation": "민노",
-            "names": [],
+            "affiliation": "섬유",
+            "names": [
+              "장기수"
+            ],
             "status": "근무"
           },
           {
             "equipmentNo": "2-28",
-            "affiliation": "섬유",
+            "affiliation": "민노",
             "names": [
-              "장기수"
+              "정원석"
             ],
             "status": "근무"
           }
