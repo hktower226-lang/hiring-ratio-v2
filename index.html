@@ -97,7 +97,7 @@ body.worker-list-open { overflow:hidden; }
 .worker-list-table th:first-child { width:17%; text-align:center; font-variant-numeric:tabular-nums; }
 .worker-list-table th:nth-child(2) { width:35%; }
 .worker-list-table tbody th { font-weight:600; color:#61766a; }
-.worker-list-table tr[data-status="해체"],.worker-list-table tr[data-status="×"] { background:#fafbf8; color:#73817c; }
+.worker-list-table tbody tr:not([data-status="근무"]) { background:#fafbf8; color:#73817c; }
 .worker-list-status { display:inline-block; padding:3px 8px; border-radius:6px; background:#f4eddf; color:#8b6625; font-size:12px; }
 .empty { text-align:center; padding:32px; color:#73817c; font-size:13px; }
 .footnote { font-size:11px; color:#7f8a80; margin:18px 3px; line-height:1.8; }
@@ -242,17 +242,18 @@ function site(r, semiconductor = false) {
   const workerButton = semiconductor && r.workerList ? `<div class="site-actions"><button type="button" class="worker-list-button" data-worker-list="${esc(r.id)}" aria-haspopup="dialog" aria-controls="worker-list-dialog">근무자 리스트<span aria-hidden="true">›</span></button></div>` : '';
   return `<article class="card"><div class="site-top"><span class="badge ${semiconductor ? assigned ? 'assigned-label' : 'semiconductor-label' : ''}">${label}</span><span>총 <b>${r.total}대</b></span></div><h3 class="site-name">${esc(r.site)}</h3>${workerButton}<div class="meta"><span>원청사</span><span>${esc(r.contractor || '미기재')}</span><span>임대사</span><span>${esc(r.rental || '미기재')}</span></div><div class="site-counts">${categories.map((c, i) => `<div><i class="dot" style="background:${COLORS[i]}"></i> ${c}<b>${r.counts[c]}대 <small>${pct(r.counts[c], r.total)}%</small></b></div>`).join('')}</div>${r.note ? `<p class="note">※ ${esc(r.note)}</p>` : ''}</article>`;
 }
-const workerAffiliation = category => ({'연합': '건산', '직원': '비노(신우직원)'}[category] || category || '—');
+const workerAffiliation = (category, list, summary = false) => list.affiliationLabels?.[category] || (summary && category === '직원' ? '비노' : {'연합': '건산', '직원': '비노(신우직원)'}[category]) || category || '—';
 const workerDialog = document.getElementById('worker-list-dialog');
 let workerListTrigger = null;
 function openWorkerList(id, trigger) {
   const record = [...SEMICONDUCTOR.records, ...SEMICONDUCTOR.assignedRecords].find(r => String(r.id) === id);
   if (!record?.workerList) return;
   const list = record.workerList;
-  const counts = SEMICONDUCTOR.categories.filter(c => list.summary[c] > 0).map(c => `<span>${esc(c === '직원' ? '비노' : workerAffiliation(c))}<b>${list.summary[c]}</b></span>`).join('');
-  const rows = list.entries.map(entry => `<tr data-status="${esc(entry.status)}"><th scope="row">${entry.equipmentNo}</th><td>${esc(workerAffiliation(entry.affiliation))}</td><td>${entry.status === '근무' ? esc(entry.names.join(' · ')) : `<span class="worker-list-status">${esc(entry.status)}</span>`}</td></tr>`).join('');
+  const counts = SEMICONDUCTOR.categories.filter(c => list.summary[c] > 0).map(c => `<span>${esc(workerAffiliation(c, list, true))}<b>${list.summary[c]}</b></span>`).join('');
+  const rows = list.entries.map(entry => `<tr data-status="${esc(entry.status)}"><th scope="row">${esc(entry.equipmentNo)}</th><td>${esc(workerAffiliation(entry.affiliation, list))}</td><td>${entry.status === '근무' ? esc(entry.names.join(' · ')) : `<span class="worker-list-status">${esc(entry.status)}</span>`}</td></tr>`).join('');
+  const guide = list.guide ?? '번호와 표기는 제공된 사진 기준입니다. 해체 항목은 요약 대수에 포함하지 않습니다.';
   document.getElementById('worker-list-site').textContent = record.site;
-  document.getElementById('worker-list-content').innerHTML = `<section class="worker-list-summary" aria-label="사진의 구간별 요약"><h3>${esc(list.label)}</h3><div class="worker-list-summary-counts">${counts}</div></section><p class="worker-list-guide">번호와 표기는 제공된 사진 기준입니다. 해체 항목은 요약 대수에 포함하지 않습니다.</p><table class="worker-list-table" aria-label="근무자 명단"><thead><tr><th scope="col">번호</th><th scope="col">소속</th><th scope="col">성명 / 상태</th></tr></thead><tbody>${rows}</tbody></table>${list.note ? `<p class="worker-list-note">${esc(list.note)}</p>` : ''}`;
+  document.getElementById('worker-list-content').innerHTML = `<section class="worker-list-summary" aria-label="소속별 요약"><h3>${esc(list.label)}</h3><div class="worker-list-summary-counts">${counts}</div></section><p class="worker-list-guide">${esc(guide)}</p><table class="worker-list-table" aria-label="근무자 명단"><thead><tr><th scope="col">번호</th><th scope="col">소속</th><th scope="col">성명 / 상태</th></tr></thead><tbody>${rows}</tbody></table>${list.note ? `<p class="worker-list-note">${esc(list.note)}</p>` : ''}`;
   workerListTrigger = trigger;
   workerDialog.showModal();
   workerDialog.scrollTop = 0;
@@ -545,17 +546,23 @@ function validateData(data) {
 }
 function validateWorkerList(list, categories) {
   if (!list || typeof list.label !== 'string' || typeof list.note !== 'string' ||
+      (list.guide !== undefined && typeof list.guide !== 'string') ||
+      (list.affiliationLabels !== undefined && (!list.affiliationLabels || Array.isArray(list.affiliationLabels) || typeof list.affiliationLabels !== 'object' ||
+        !Object.entries(list.affiliationLabels).every(([key, value]) => categories.includes(key) && typeof value === 'string' && value.trim()))) ||
       !list.summary || Object.keys(list.summary).length !== categories.length ||
       !categories.every(c => Number.isInteger(list.summary[c]) && list.summary[c] >= 0) ||
       !Array.isArray(list.entries) || !list.entries.length) throw new Error('근무자 리스트 형식을 확인해 주세요.');
   const numbers = new Set();
+  const statuses = ['근무', '해체', '×', '설치완료', '설치 완료', '==앙카설치==', '==미설치=='];
   for (const entry of list.entries) {
-    if (!entry || !Number.isInteger(entry.equipmentNo) || entry.equipmentNo <= 0 || numbers.has(entry.equipmentNo) ||
-        !['근무', '해체', '×'].includes(entry.status) ||
-        (entry.status === '×' ? entry.affiliation !== null : !categories.includes(entry.affiliation)) ||
+    const validNumber = entry && (Number.isInteger(entry.equipmentNo) && entry.equipmentNo > 0 || typeof entry.equipmentNo === 'string' && /^(?:0?[1-9]|[1-9]\d*)(?:-[1-9]\d*)?$/.test(entry.equipmentNo));
+    const numberKey = validNumber ? String(entry.equipmentNo).split('-').map(Number).join('-') : '';
+    if (!entry || !validNumber || numbers.has(numberKey) ||
+        !statuses.includes(entry.status) ||
+        (['근무', '해체'].includes(entry.status) ? !categories.includes(entry.affiliation) : entry.affiliation !== null) ||
         !Array.isArray(entry.names) || !entry.names.every(name => typeof name === 'string' && name.trim()) ||
         (entry.status === '근무' ? entry.names.length === 0 : entry.names.length !== 0)) throw new Error('근무자 리스트의 번호·소속·성명을 확인해 주세요.');
-    numbers.add(entry.equipmentNo);
+    numbers.add(numberKey);
   }
 }
 function validateSemiconductorData(data, mainCategories = DATA.categories) {

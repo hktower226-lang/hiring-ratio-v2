@@ -21,7 +21,312 @@
         "연합": 0,
         "직원": 2
       },
-      "note": ""
+      "note": "",
+      "workerList": {
+        "label": "명단 기재 인원 · 33명",
+        "summary": {
+          "한노": 13,
+          "민노": 18,
+          "섬유": 0,
+          "연합": 0,
+          "직원": 2
+        },
+        "entries": [
+          {
+            "equipmentNo": "01",
+            "affiliation": "한노",
+            "names": [
+              "우창영"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "02",
+            "affiliation": "민노",
+            "names": [
+              "박정수"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "03",
+            "affiliation": "한노",
+            "names": [
+              "강길환"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "04",
+            "affiliation": "민노",
+            "names": [
+              "정대영"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "05",
+            "affiliation": "민노",
+            "names": [
+              "김재석"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "06",
+            "affiliation": "민노",
+            "names": [
+              "이지희"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "07",
+            "affiliation": "한노",
+            "names": [
+              "허화창"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "08",
+            "affiliation": "민노",
+            "names": [
+              "김안중"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "09",
+            "affiliation": "직원",
+            "names": [
+              "이현우"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "10",
+            "affiliation": "민노",
+            "names": [
+              "안창호"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "11",
+            "affiliation": "한노",
+            "names": [
+              "박태준"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "12",
+            "affiliation": "민노",
+            "names": [
+              "전재봉"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "13",
+            "affiliation": "한노",
+            "names": [
+              "구본화"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "14",
+            "affiliation": "민노",
+            "names": [
+              "배희성"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "15",
+            "affiliation": "직원",
+            "names": [
+              "김주호"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "16",
+            "affiliation": "민노",
+            "names": [
+              "안정빈"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "17",
+            "affiliation": "한노",
+            "names": [
+              "이종국"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "18",
+            "affiliation": "민노",
+            "names": [
+              "김대식"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "19",
+            "affiliation": "한노",
+            "names": [
+              "송동하"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "20",
+            "affiliation": "민노",
+            "names": [
+              "김동찬"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "21",
+            "affiliation": null,
+            "names": [],
+            "status": "설치완료"
+          },
+          {
+            "equipmentNo": "22",
+            "affiliation": "민노",
+            "names": [
+              "김태현"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "23",
+            "affiliation": "한노",
+            "names": [
+              "김원식"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "24",
+            "affiliation": "민노",
+            "names": [
+              "조남석"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "25",
+            "affiliation": "한노",
+            "names": [
+              "원종찬"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "26",
+            "affiliation": "민노",
+            "names": [
+              "조성오"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "27",
+            "affiliation": "한노",
+            "names": [
+              "이영주"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "28",
+            "affiliation": "민노",
+            "names": [
+              "김지훈"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "29",
+            "affiliation": "한노",
+            "names": [
+              "김상현"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "30",
+            "affiliation": "민노",
+            "names": [
+              "김대영"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "31",
+            "affiliation": null,
+            "names": [],
+            "status": "==앙카설치=="
+          },
+          {
+            "equipmentNo": "32",
+            "affiliation": "민노",
+            "names": [
+              "이정현"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-1",
+            "affiliation": "한노",
+            "names": [
+              "서상일"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-2",
+            "affiliation": null,
+            "names": [],
+            "status": "==미설치=="
+          },
+          {
+            "equipmentNo": "2-3",
+            "affiliation": "한노",
+            "names": [
+              "박성문"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-4",
+            "affiliation": "민노",
+            "names": [
+              "이종석"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-5",
+            "affiliation": null,
+            "names": [],
+            "status": "설치 완료"
+          }
+        ],
+        "note": "현장 등록 대수 32대 · 명단 기재 인원 33명",
+        "guide": "번호·설치 상태는 제공된 명단 그대로 표시합니다. 소속별 요약은 이름이 기재된 행을 기준으로 합니다.",
+        "affiliationLabels": {
+          "직원": "비노"
+        }
+      }
     },
     {
       "id": "semiconductor-04",
