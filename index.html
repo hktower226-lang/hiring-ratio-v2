@@ -254,7 +254,7 @@ function openWorkerList(id, trigger) {
   const counts = list.summary ? SEMICONDUCTOR.categories.filter(c => list.summary[c] > 0).map(c => `<span>${esc(workerAffiliation(c, list, true))}<b>${list.summary[c]}</b></span>`).join('') : '';
   const rows = list.entries.map(entry => {
     const detail = entry.note || (entry.status === '근무' ? '' : entry.status);
-    const person = entry.names.length ? `${esc(entry.names.join(' · '))}${detail ? `<span class="worker-list-entry-note">(${esc(detail)})</span>` : ''}` : `<span class="worker-list-status">${esc(entry.status)}</span>`;
+    const person = entry.names.length ? `${esc(entry.names.join(' · '))}${detail ? `<span class="worker-list-entry-note">(${esc(detail)})</span>` : ''}` : entry.status === '근무' ? '—' : `<span class="worker-list-status">${esc(entry.status)}</span>`;
     return `<tr data-status="${esc(entry.status)}"><th scope="row">${esc(entry.equipmentNo)}</th><td>${esc(workerAffiliation(entry.affiliation, list))}</td><td>${person}</td></tr>`;
   }).join('');
   const guide = list.guide ?? '번호와 표기는 제공된 사진 기준입니다. 해체 항목은 요약 대수에 포함하지 않습니다.';
@@ -559,7 +559,7 @@ function validateWorkerList(list, categories) {
         Object.keys(list.summary).length !== categories.length || !categories.every(c => Number.isInteger(list.summary[c]) && list.summary[c] >= 0))) ||
       !Array.isArray(list.entries) || !list.entries.length) throw new Error('근무자 리스트 형식을 확인해 주세요.');
   const numbers = new Set();
-  const statuses = ['근무', '출근대기', '해체', '×', '설치완료', '설치 완료', '==앙카설치==', '==미설치=='];
+  const statuses = ['근무', '출근대기', '해체', '×', '설치중', '설치완료', '설치 완료', '==앙카설치==', '==미설치=='];
   for (const entry of list.entries) {
     const validNumber = entry && (Number.isInteger(entry.equipmentNo) && entry.equipmentNo > 0 || typeof entry.equipmentNo === 'string' && /^(?:0?[1-9]|[1-9]\d*)(?:-[1-9]\d*)?$/.test(entry.equipmentNo));
     const numberKey = validNumber ? String(entry.equipmentNo).split('-').map(Number).join('-') : '';
@@ -568,7 +568,7 @@ function validateWorkerList(list, categories) {
         (['근무', '출근대기'].includes(entry.status) ? entry.affiliation !== null && !categories.includes(entry.affiliation) : entry.status === '해체' ? !categories.includes(entry.affiliation) : entry.affiliation !== null) ||
         (entry.note !== undefined && typeof entry.note !== 'string') ||
         !Array.isArray(entry.names) || !entry.names.every(name => typeof name === 'string' && name.trim()) ||
-        (['근무', '출근대기'].includes(entry.status) ? entry.names.length === 0 : entry.names.length !== 0)) throw new Error('근무자 리스트의 번호·소속·성명을 확인해 주세요.');
+        (entry.status === '근무' ? entry.names.length === 0 && entry.affiliation === null : entry.status === '출근대기' ? entry.names.length === 0 : entry.names.length !== 0)) throw new Error('근무자 리스트의 번호·소속·성명을 확인해 주세요.');
     numbers.add(numberKey);
   }
 }

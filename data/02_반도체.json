@@ -611,27 +611,52 @@
       },
       "note": "",
       "workerList": {
-        "label": "제공된 명단 · 7명",
+        "label": "제공된 명단 · 20개 항목",
+        "summary": {
+          "한노": 7,
+          "민노": 11,
+          "섬유": 1,
+          "연합": 0,
+          "직원": 0
+        },
         "entries": [
           {
+            "equipmentNo": "2-1",
+            "affiliation": "민노",
+            "names": [],
+            "status": "근무"
+          },
+          {
             "equipmentNo": "2-2",
-            "affiliation": null,
+            "affiliation": "한노",
             "names": [
               "배남현"
             ],
             "status": "근무"
           },
           {
+            "equipmentNo": "2-3",
+            "affiliation": "민노",
+            "names": [],
+            "status": "근무"
+          },
+          {
             "equipmentNo": "2-4",
-            "affiliation": null,
+            "affiliation": "한노",
             "names": [
               "박재홍"
             ],
             "status": "근무"
           },
           {
+            "equipmentNo": "2-5",
+            "affiliation": "민노",
+            "names": [],
+            "status": "근무"
+          },
+          {
             "equipmentNo": "2-6",
-            "affiliation": null,
+            "affiliation": "한노",
             "names": [
               "김중하"
             ],
@@ -639,15 +664,44 @@
           },
           {
             "equipmentNo": "2-7",
-            "affiliation": null,
+            "affiliation": "한노",
             "names": [
               "김영식"
             ],
             "status": "근무"
           },
           {
-            "equipmentNo": "2-14",
+            "equipmentNo": "2-8",
+            "affiliation": "민노",
+            "names": [
+              "백재철"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-9",
             "affiliation": null,
+            "names": [],
+            "status": "설치중"
+          },
+          {
+            "equipmentNo": "2-12",
+            "affiliation": "민노",
+            "names": [],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-13",
+            "affiliation": "민노",
+            "names": [
+              "방희라"
+            ],
+            "status": "출근대기",
+            "note": "출근 전"
+          },
+          {
+            "equipmentNo": "2-14",
+            "affiliation": "한노",
             "names": [
               "최형수"
             ],
@@ -655,24 +709,63 @@
           },
           {
             "equipmentNo": "2-16",
-            "affiliation": null,
+            "affiliation": "한노",
             "names": [
               "이상건"
             ],
-            "status": "출근대기",
-            "note": "이력서 선정 출근대기중"
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-18",
+            "affiliation": "민노",
+            "names": [],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-20",
+            "affiliation": "민노",
+            "names": [
+              "조영래"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-24",
+            "affiliation": "민노",
+            "names": [],
+            "status": "근무"
           },
           {
             "equipmentNo": "2-25",
-            "affiliation": null,
+            "affiliation": "한노",
             "names": [
               "장수영"
             ],
             "status": "근무"
+          },
+          {
+            "equipmentNo": "2-26",
+            "affiliation": "민노",
+            "names": [],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-27",
+            "affiliation": "민노",
+            "names": [],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-28",
+            "affiliation": "섬유",
+            "names": [
+              "장기수"
+            ],
+            "status": "근무"
           }
         ],
-        "note": "",
-        "guide": "개인별 소속 정보가 제공되지 않아 소속은 —로 표시합니다. 제공된 7명은 현장 전체 대수와 별도의 참고 명단입니다."
+        "note": "현장 채용 대수 17대(한노 6·민노 10·섬유 1)와 명단 소속 표기 19개(한노 7·민노 11·섬유 1)는 별도로 유지합니다.",
+        "guide": "소속별 요약은 명단의 소속 표기 기준입니다. 성명이 없는 항목은 —로 표시합니다."
       }
     },
     {
