@@ -73,6 +73,32 @@ h3 { margin:0; font-size:16px; }
 .site-counts b { display:block; font-size:14px; color:var(--ink); margin-top:3px; }
 .site-counts small { font-size:10px; font-weight:400; color:#718075; }
 .note { font-size:11px; color:#8b6625; margin:12px 0 0; }
+.site-actions { margin:-2px 0 16px; }
+.worker-list-button { display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; min-height:44px; border:1px solid #c9d9ce; border-radius:11px; padding:10px 13px; color:#244e39; background:#edf4ee; font-size:13px; font-weight:700; text-align:left; }
+.worker-list-button:hover { background:#e1ede3; border-color:#71977b; }
+body.worker-list-open { overflow:hidden; }
+.worker-list-dialog { width:calc(100% - 24px); max-width:560px; max-height:85vh; max-height:85dvh; padding:0; border:1px solid var(--line); border-radius:20px; background:white; color:var(--ink); box-shadow:0 20px 70px #122e2a40; overflow:auto; overscroll-behavior:contain; }
+.worker-list-dialog::backdrop { background:#102e29a6; }
+.worker-list-header { position:sticky; top:0; z-index:1; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; padding:18px 16px 14px; background:white; border-bottom:1px solid var(--line); }
+.worker-list-header > div { min-width:0; }
+.worker-list-header h2 { font-size:19px; }
+.worker-list-site { margin:5px 0 0; color:#61766a; font-size:12px; overflow-wrap:anywhere; }
+.worker-list-close { flex-shrink:0; min-width:48px; min-height:44px; padding:8px; border:1px solid var(--line); border-radius:10px; color:var(--ink); background:#f4f6f3; font-size:12px; }
+.worker-list-content { padding:16px; }
+.worker-list-summary { padding:14px; border-radius:12px; background:#edf4ee; }
+.worker-list-summary h3 { margin:0 0 8px; font-size:13px; }
+.worker-list-summary-counts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px 12px; font-size:12px; }
+.worker-list-summary-counts b { margin-left:5px; }
+.worker-list-guide,.worker-list-note { margin:12px 0; font-size:11px; line-height:1.8; color:#61766a; }
+.worker-list-note { margin-bottom:0; padding:12px; border-radius:10px; background:#fff5df; color:#785c27; }
+.worker-list-table { width:100%; border-collapse:collapse; table-layout:fixed; font-size:13px; }
+.worker-list-table th,.worker-list-table td { padding:12px 7px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle; overflow-wrap:anywhere; }
+.worker-list-table thead th { background:#f4f6f3; color:#61766a; font-size:11px; }
+.worker-list-table th:first-child { width:17%; text-align:center; font-variant-numeric:tabular-nums; }
+.worker-list-table th:nth-child(2) { width:35%; }
+.worker-list-table tbody th { font-weight:600; color:#61766a; }
+.worker-list-table tr[data-status="해체"],.worker-list-table tr[data-status="×"] { background:#fafbf8; color:#73817c; }
+.worker-list-status { display:inline-block; padding:3px 8px; border-radius:6px; background:#f4eddf; color:#8b6625; font-size:12px; }
 .empty { text-align:center; padding:32px; color:#73817c; font-size:13px; }
 .footnote { font-size:11px; color:#7f8a80; margin:18px 3px; line-height:1.8; }
 nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:680px; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); background:#ffffffed; backdrop-filter:blur(16px); border-top:1px solid var(--line); padding:10px 8px calc(10px + env(safe-area-inset-bottom)); z-index:10; }
@@ -153,6 +179,7 @@ nav svg { display:block; margin:0 auto 4px; width:21px; height:21px; fill:none; 
 </style>
 </head>
 <body><div class="app"><header><small>GYEONGGI REGIONAL HEADQUARTERS</small><h1>현장의 숫자를, 한눈에.</h1><p>경기지역본부 채용비율 현황</p><div class="tag" id="data-period">첫 번째 시트</div></header><div class="data-tools"><span id="sync-status" role="status">데이터 연결 중…</span><button id="refresh-data" type="button">데이터 새로고침</button></div><main id="main"><div class="empty" role="status">현황 데이터를 불러오는 중…</div></main><nav aria-label="현황 분류"></nav></div>
+<dialog id="worker-list-dialog" class="worker-list-dialog" aria-labelledby="worker-list-title worker-list-site"><div class="worker-list-header"><div><h2 id="worker-list-title">근무자 리스트</h2><p id="worker-list-site" class="worker-list-site"></p></div><button type="button" class="worker-list-close" data-worker-list-close autofocus>닫기</button></div><div id="worker-list-content" class="worker-list-content"></div></dialog>
 <script>
 'use strict';
 let DATA = null;
@@ -212,8 +239,38 @@ function site(r, semiconductor = false) {
   const assigned = semiconductor && semiconductorSection === 'assigned';
   const label = semiconductor ? assigned ? '배정 완료' : '반도체 현장' : `${r.month}월 · ${esc(r.branch)}`;
   const categories = semiconductor ? SEMICONDUCTOR.categories : DATA.categories;
-  return `<article class="card"><div class="site-top"><span class="badge ${semiconductor ? assigned ? 'assigned-label' : 'semiconductor-label' : ''}">${label}</span><span>총 <b>${r.total}대</b></span></div><h3 class="site-name">${esc(r.site)}</h3><div class="meta"><span>원청사</span><span>${esc(r.contractor || '미기재')}</span><span>임대사</span><span>${esc(r.rental || '미기재')}</span></div><div class="site-counts">${categories.map((c, i) => `<div><i class="dot" style="background:${COLORS[i]}"></i> ${c}<b>${r.counts[c]}대 <small>${pct(r.counts[c], r.total)}%</small></b></div>`).join('')}</div>${r.note ? `<p class="note">※ ${esc(r.note)}</p>` : ''}</article>`;
+  const workerButton = semiconductor && r.workerList ? `<div class="site-actions"><button type="button" class="worker-list-button" data-worker-list="${esc(r.id)}" aria-haspopup="dialog" aria-controls="worker-list-dialog">근무자 리스트<span aria-hidden="true">›</span></button></div>` : '';
+  return `<article class="card"><div class="site-top"><span class="badge ${semiconductor ? assigned ? 'assigned-label' : 'semiconductor-label' : ''}">${label}</span><span>총 <b>${r.total}대</b></span></div><h3 class="site-name">${esc(r.site)}</h3>${workerButton}<div class="meta"><span>원청사</span><span>${esc(r.contractor || '미기재')}</span><span>임대사</span><span>${esc(r.rental || '미기재')}</span></div><div class="site-counts">${categories.map((c, i) => `<div><i class="dot" style="background:${COLORS[i]}"></i> ${c}<b>${r.counts[c]}대 <small>${pct(r.counts[c], r.total)}%</small></b></div>`).join('')}</div>${r.note ? `<p class="note">※ ${esc(r.note)}</p>` : ''}</article>`;
 }
+const workerAffiliation = category => ({'연합': '건산', '직원': '비노(신우직원)'}[category] || category || '—');
+const workerDialog = document.getElementById('worker-list-dialog');
+let workerListTrigger = null;
+function openWorkerList(id, trigger) {
+  const record = [...SEMICONDUCTOR.records, ...SEMICONDUCTOR.assignedRecords].find(r => String(r.id) === id);
+  if (!record?.workerList) return;
+  const list = record.workerList;
+  const counts = SEMICONDUCTOR.categories.filter(c => list.summary[c] > 0).map(c => `<span>${esc(c === '직원' ? '비노' : workerAffiliation(c))}<b>${list.summary[c]}</b></span>`).join('');
+  const rows = list.entries.map(entry => `<tr data-status="${esc(entry.status)}"><th scope="row">${entry.equipmentNo}</th><td>${esc(workerAffiliation(entry.affiliation))}</td><td>${entry.status === '근무' ? esc(entry.names.join(' · ')) : `<span class="worker-list-status">${esc(entry.status)}</span>`}</td></tr>`).join('');
+  document.getElementById('worker-list-site').textContent = record.site;
+  document.getElementById('worker-list-content').innerHTML = `<section class="worker-list-summary" aria-label="사진의 구간별 요약"><h3>${esc(list.label)}</h3><div class="worker-list-summary-counts">${counts}</div></section><p class="worker-list-guide">번호와 표기는 제공된 사진 기준입니다. 해체 항목은 요약 대수에 포함하지 않습니다.</p><table class="worker-list-table" aria-label="근무자 명단"><thead><tr><th scope="col">번호</th><th scope="col">소속</th><th scope="col">성명 / 상태</th></tr></thead><tbody>${rows}</tbody></table>${list.note ? `<p class="worker-list-note">${esc(list.note)}</p>` : ''}`;
+  workerListTrigger = trigger;
+  workerDialog.showModal();
+  workerDialog.scrollTop = 0;
+  document.body.classList.add('worker-list-open');
+}
+workerDialog.addEventListener('close', () => {
+  document.body.classList.remove('worker-list-open');
+  document.getElementById('worker-list-content').replaceChildren();
+  if (workerListTrigger?.isConnected) workerListTrigger.focus({preventScroll: true});
+  workerListTrigger = null;
+});
+workerDialog.addEventListener('click', event => {
+  if (event.target.closest('[data-worker-list-close]')) workerDialog.close();
+  else if (event.target === workerDialog) {
+    const rect = workerDialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) workerDialog.close();
+  }
+});
 function groupKeys() {
   return mode === 'month' ? DATA.months : [...new Set(DATA.records.map(r => r[mode]))].sort((a, b) => a.localeCompare(b, 'ko'));
 }
@@ -309,6 +366,7 @@ function drawSearchStatus() {
   document.getElementById('search-status').textContent = query.trim() ? `${mode === 'semiconductor' ? '선택한 반도체 목록' : mode === 'all' ? '반도체 제외 현장' : '전체'} 검색 결과 ${matchingQuery(rows).length}건 · 합계와 비율은 검색 전 기준입니다.` : mode === 'all' ? '반도체 제외 현장 목록을 검색합니다. 반도체 현장은 반도체 메뉴에서 검색해 주세요.' : '현장명·원청사·임대사로 검색할 수 있어요.';
 }
 function draw() {
+  if (workerDialog.open) workerDialog.close();
   document.querySelector('nav').innerHTML = MODES.map(([key, label, title, icon]) => `<button data-mode="${key}" class="${mode === key ? 'active' : ''}" aria-pressed="${mode === key}"><svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg>${label}</button>`).join('');
   if (mode === 'current-ratio') {
     drawCurrentRatio();
@@ -345,6 +403,11 @@ function draw() {
   });
 }
 document.addEventListener('click', e => {
+  const workerButton = e.target.closest('[data-worker-list]');
+  if (workerButton) {
+    openWorkerList(workerButton.dataset.workerList, workerButton);
+    return;
+  }
   const tab = e.target.closest('[data-mode]');
   if (tab) {
     mode = tab.dataset.mode;
@@ -480,6 +543,21 @@ function validateData(data) {
   }
   return data;
 }
+function validateWorkerList(list, categories) {
+  if (!list || typeof list.label !== 'string' || typeof list.note !== 'string' ||
+      !list.summary || Object.keys(list.summary).length !== categories.length ||
+      !categories.every(c => Number.isInteger(list.summary[c]) && list.summary[c] >= 0) ||
+      !Array.isArray(list.entries) || !list.entries.length) throw new Error('근무자 리스트 형식을 확인해 주세요.');
+  const numbers = new Set();
+  for (const entry of list.entries) {
+    if (!entry || !Number.isInteger(entry.equipmentNo) || entry.equipmentNo <= 0 || numbers.has(entry.equipmentNo) ||
+        !['근무', '해체', '×'].includes(entry.status) ||
+        (entry.status === '×' ? entry.affiliation !== null : !categories.includes(entry.affiliation)) ||
+        !Array.isArray(entry.names) || !entry.names.every(name => typeof name === 'string' && name.trim()) ||
+        (entry.status === '근무' ? entry.names.length === 0 : entry.names.length !== 0)) throw new Error('근무자 리스트의 번호·소속·성명을 확인해 주세요.');
+    numbers.add(entry.equipmentNo);
+  }
+}
 function validateSemiconductorData(data, mainCategories = DATA.categories) {
   if (!data || typeof data.sheet !== 'string' ||
       !Array.isArray(data.categories) || data.categories.length !== mainCategories.length ||
@@ -496,6 +574,7 @@ function validateSemiconductorData(data, mainCategories = DATA.categories) {
           !data.categories.every(c => Number.isInteger(r.counts[c]) && r.counts[c] >= 0)) {
         throw new Error('반도체 현장 기록을 확인해 주세요.');
       }
+      if (r.workerList !== undefined) validateWorkerList(r.workerList, data.categories);
       ids.add(r.id);
     }
   }

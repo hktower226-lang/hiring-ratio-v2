@@ -36,7 +36,245 @@
         "연합": 2,
         "직원": 2
       },
-      "note": "통계 미포함: 한노 해체 2대, 민노 해체 1대"
+      "note": "통계 미포함: 한노 해체 2대, 민노 해체 1대",
+      "workerList": {
+        "label": "1차구간",
+        "summary": {
+          "한노": 10,
+          "민노": 11,
+          "섬유": 0,
+          "연합": 2,
+          "직원": 2
+        },
+        "entries": [
+          {
+            "equipmentNo": 1,
+            "affiliation": "한노",
+            "names": [
+              "강영남"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 2,
+            "affiliation": "민노",
+            "names": [
+              "윤상규"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 3,
+            "affiliation": "직원",
+            "names": [
+              "임영수"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 4,
+            "affiliation": "민노",
+            "names": [
+              "오경진"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 5,
+            "affiliation": "한노",
+            "names": [
+              "김진호"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 6,
+            "affiliation": "민노",
+            "names": [
+              "임찬묵"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 9,
+            "affiliation": "민노",
+            "names": [
+              "신종찬"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 10,
+            "affiliation": null,
+            "names": [],
+            "status": "×"
+          },
+          {
+            "equipmentNo": 11,
+            "affiliation": "민노",
+            "names": [],
+            "status": "해체"
+          },
+          {
+            "equipmentNo": 12,
+            "affiliation": "한노",
+            "names": [
+              "오세훈"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 13,
+            "affiliation": "한노",
+            "names": [
+              "전혁배"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 14,
+            "affiliation": "민노",
+            "names": [
+              "주황남"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 15,
+            "affiliation": "한노",
+            "names": [
+              "이동준"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 16,
+            "affiliation": "민노",
+            "names": [
+              "김승주",
+              "곽세훈"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 17,
+            "affiliation": "한노",
+            "names": [],
+            "status": "해체"
+          },
+          {
+            "equipmentNo": 18,
+            "affiliation": "민노",
+            "names": [
+              "박호상"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 21,
+            "affiliation": "한노",
+            "names": [
+              "김형삼"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 23,
+            "affiliation": "한노",
+            "names": [],
+            "status": "해체"
+          },
+          {
+            "equipmentNo": 24,
+            "affiliation": "민노",
+            "names": [
+              "서양원"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 25,
+            "affiliation": "한노",
+            "names": [
+              "양현호"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 26,
+            "affiliation": "민노",
+            "names": [
+              "김병돈"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 27,
+            "affiliation": "한노",
+            "names": [
+              "장순일"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 28,
+            "affiliation": "민노",
+            "names": [
+              "김보민"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 29,
+            "affiliation": "연합",
+            "names": [
+              "홍금의"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 30,
+            "affiliation": "직원",
+            "names": [
+              "원희찬"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 31,
+            "affiliation": "한노",
+            "names": [
+              "송용규"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 32,
+            "affiliation": "민노",
+            "names": [
+              "김용근"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 33,
+            "affiliation": "한노",
+            "names": [
+              "홍영종"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": 34,
+            "affiliation": "연합",
+            "names": [
+              "구현승"
+            ],
+            "status": "근무"
+          }
+        ],
+        "note": "2차구간은 알 수 없음."
+      }
     },
     {
       "id": "semiconductor-07",
