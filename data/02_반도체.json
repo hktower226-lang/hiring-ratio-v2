@@ -601,15 +601,79 @@
       "rental": "신우개발(주)",
       "contractor": "삼성물산(주)",
       "site": "평택삼성 P5 FAB동 2차구간",
-      "total": 15,
+      "total": 17,
       "counts": {
         "한노": 6,
-        "민노": 8,
+        "민노": 10,
         "섬유": 1,
         "연합": 0,
         "직원": 0
       },
-      "note": ""
+      "note": "",
+      "workerList": {
+        "label": "제공된 명단 · 7명",
+        "entries": [
+          {
+            "equipmentNo": "2-2",
+            "affiliation": null,
+            "names": [
+              "배남현"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-4",
+            "affiliation": null,
+            "names": [
+              "박재홍"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-6",
+            "affiliation": null,
+            "names": [
+              "김중하"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-7",
+            "affiliation": null,
+            "names": [
+              "김영식"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-14",
+            "affiliation": null,
+            "names": [
+              "최형수"
+            ],
+            "status": "근무"
+          },
+          {
+            "equipmentNo": "2-16",
+            "affiliation": null,
+            "names": [
+              "이상건"
+            ],
+            "status": "출근대기",
+            "note": "이력서 선정 출근대기중"
+          },
+          {
+            "equipmentNo": "2-25",
+            "affiliation": null,
+            "names": [
+              "장수영"
+            ],
+            "status": "근무"
+          }
+        ],
+        "note": "",
+        "guide": "개인별 소속 정보가 제공되지 않아 소속은 —로 표시합니다. 제공된 7명은 현장 전체 대수와 별도의 참고 명단입니다."
+      }
     },
     {
       "id": "semiconductor-09",
