@@ -559,13 +559,13 @@ function validateWorkerList(list, categories) {
         Object.keys(list.summary).length !== categories.length || !categories.every(c => Number.isInteger(list.summary[c]) && list.summary[c] >= 0))) ||
       !Array.isArray(list.entries) || !list.entries.length) throw new Error('근무자 리스트 형식을 확인해 주세요.');
   const numbers = new Set();
-  const statuses = ['근무', '출근대기', '해체', '×', '설치중', '설치완료', '설치 완료', '==앙카설치==', '==미설치=='];
+  const statuses = ['근무', '출근대기', '미배치', '해체', '×', '설치중', '설치완료', '설치 완료', '==앙카설치==', '==미설치=='];
   for (const entry of list.entries) {
     const validNumber = entry && (Number.isInteger(entry.equipmentNo) && entry.equipmentNo > 0 || typeof entry.equipmentNo === 'string' && /^(?:0?[1-9]|[1-9]\d*)(?:-[1-9]\d*)?$/.test(entry.equipmentNo));
     const numberKey = validNumber ? String(entry.equipmentNo).split('-').map(Number).join('-') : '';
     if (!entry || !validNumber || numbers.has(numberKey) ||
         !statuses.includes(entry.status) ||
-        (['근무', '출근대기'].includes(entry.status) ? entry.affiliation !== null && !categories.includes(entry.affiliation) : entry.status === '해체' ? !categories.includes(entry.affiliation) : entry.affiliation !== null) ||
+        (['근무', '출근대기', '미배치'].includes(entry.status) ? entry.affiliation !== null && !categories.includes(entry.affiliation) : entry.status === '해체' ? !categories.includes(entry.affiliation) : entry.affiliation !== null) ||
         (entry.note !== undefined && typeof entry.note !== 'string') ||
         !Array.isArray(entry.names) || !entry.names.every(name => typeof name === 'string' && name.trim()) ||
         (entry.status === '근무' ? entry.names.length === 0 && entry.affiliation === null : entry.status === '출근대기' ? entry.names.length === 0 : entry.names.length !== 0)) throw new Error('근무자 리스트의 번호·소속·성명을 확인해 주세요.');
