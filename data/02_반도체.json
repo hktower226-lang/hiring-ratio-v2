@@ -611,18 +611,18 @@
       },
       "note": "",
       "workerList": {
-        "label": "제공된 명단 · 20개 항목",
+        "label": "2차구간 · 합계 20대",
         "summary": {
-          "한노": 7,
-          "민노": 11,
+          "한노": 8,
+          "민노": 9,
           "섬유": 1,
           "연합": 0,
-          "직원": 0
+          "직원": 2
         },
         "entries": [
           {
             "equipmentNo": "2-1",
-            "affiliation": "민노",
+            "affiliation": "직원",
             "names": [
               "조성연"
             ],
@@ -686,9 +686,12 @@
           },
           {
             "equipmentNo": "2-9",
-            "affiliation": null,
-            "names": [],
-            "status": "설치중"
+            "affiliation": "한노",
+            "names": [
+              "윤대식"
+            ],
+            "status": "출근대기",
+            "note": "출근전"
           },
           {
             "equipmentNo": "2-12",
@@ -726,9 +729,9 @@
           },
           {
             "equipmentNo": "2-18",
-            "affiliation": "민노",
+            "affiliation": "직원",
             "names": [],
-            "status": "근무"
+            "status": "미배치"
           },
           {
             "equipmentNo": "2-20",
@@ -779,8 +782,11 @@
             "status": "근무"
           }
         ],
-        "note": "현장 채용 대수 20대(한노 8·민노 9·섬유 1·비노 2)와 명단 소속 표기 19개(한노 7·민노 11·섬유 1)는 별도로 유지합니다.",
-        "guide": "소속별 요약은 명단의 소속 표기 기준입니다. 성명이 없는 항목은 —로 표시합니다."
+        "note": "",
+        "guide": "제공된 명단 기준입니다. 출근 전·미배치 항목도 소속별 대수에 포함합니다.",
+        "affiliationLabels": {
+          "직원": "비노"
+        }
       }
     },
     {
