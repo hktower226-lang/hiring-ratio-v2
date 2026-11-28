@@ -23,17 +23,17 @@
       },
       "note": "",
       "workerList": {
-        "label": "명단 기재 인원 · 33명",
+        "label": "명단 기재 인원 · 35명",
         "summary": {
           "한노": 13,
           "민노": 18,
-          "섬유": 0,
-          "연합": 0,
+          "섬유": 1,
+          "연합": 1,
           "직원": 2
         },
         "entries": [
           {
-            "equipmentNo": "01",
+            "equipmentNo": "1-1",
             "affiliation": "한노",
             "names": [
               "우창영"
@@ -49,7 +49,7 @@
             "status": "근무"
           },
           {
-            "equipmentNo": "03",
+            "equipmentNo": "1-3",
             "affiliation": "한노",
             "names": [
               "강길환"
@@ -65,7 +65,7 @@
             "status": "근무"
           },
           {
-            "equipmentNo": "05",
+            "equipmentNo": "1-5",
             "affiliation": "민노",
             "names": [
               "김재석"
@@ -73,7 +73,7 @@
             "status": "근무"
           },
           {
-            "equipmentNo": "06",
+            "equipmentNo": "1-6",
             "affiliation": "민노",
             "names": [
               "이지희"
@@ -89,7 +89,7 @@
             "status": "근무"
           },
           {
-            "equipmentNo": "08",
+            "equipmentNo": "1-8",
             "affiliation": "민노",
             "names": [
               "김안중"
@@ -194,9 +194,11 @@
           },
           {
             "equipmentNo": "21",
-            "affiliation": null,
-            "names": [],
-            "status": "설치완료"
+            "affiliation": "섬유",
+            "names": [
+              "정규종"
+            ],
+            "status": "근무"
           },
           {
             "equipmentNo": "22",
@@ -316,15 +318,18 @@
           },
           {
             "equipmentNo": "2-5",
-            "affiliation": null,
-            "names": [],
-            "status": "설치 완료"
+            "affiliation": "연합",
+            "names": [
+              "김태균"
+            ],
+            "status": "근무"
           }
         ],
-        "note": "현장 등록 대수 35대 · 명단 기재 인원 33명",
+        "note": "현장 등록 대수 35대 · 명단 기재 인원 35명",
         "guide": "번호·설치 상태는 제공된 명단 그대로 표시합니다. 소속별 요약은 이름이 기재된 행을 기준으로 합니다.",
         "affiliationLabels": {
-          "직원": "비노"
+          "직원": "비노",
+          "연합": "연합"
         }
       }
     },
